@@ -7,14 +7,14 @@
   <meta name="description" content="36.5도 여름 동쪽점 · 푸드 · 주류 · 칵테일 · 음료 메뉴" />
   <style>
     :root{
-      --bg:#f0f8ff;           /* AliceBlue */
-      --ink:#222;             /* text */
-      --ink-dim:#555;         /* secondary text */
-      --brand:#007acc;        /* blue */
-      --card:#fff;            /* surface */
-      --chip:#e6f7ff;         /* light chip */
-      --chip-border:#b3e5fc;  /* chip border */
-      --rule:#eaeef2;         /* dividers */
+      --bg:#f0f8ff;
+      --ink:#222;
+      --ink-dim:#555;
+      --brand:#007acc;
+      --card:#fff;
+      --chip:#e6f7ff;
+      --chip-border:#b3e5fc;
+      --rule:#eaeef2;
       --shadow:0 4px 12px rgba(0,0,0,.06);
       --radius:14px;
       --radius-sm:10px;
@@ -29,18 +29,18 @@
     /* Header */
     .site-header{position:sticky;top:0;z-index:50;background:linear-gradient(180deg,#ffffffee,#ffffffcc 60%,transparent);backdrop-filter:saturate(1.2) blur(6px);border-bottom:1px solid var(--rule)}
     .bar{max-width:var(--maxw);margin:0 auto;padding:14px 16px;display:flex;gap:12px;align-items:center;justify-content:space-between}
-    h1.title{margin:0;font-size:clamp(18px,4.2vw,28px);font-weight:800;letter-spacing:-.01em}
+    h1.title{margin:0;font-weight:800;letter-spacing:-.01em;font-size:clamp(20px,3.8vw,32px)}
     .ig{font-size:13px;color:var(--ink-dim)}
 
-    /* Search */
-    .search{flex:1;max-width:420px;position:relative}
+    /* Search (now in MAIN, not header) */
+    .search{position:relative}
     .search input{width:100%;padding:12px 40px 12px 12px;border:1px solid var(--rule);border-radius:12px;background:#fff;outline:none}
     .search .icon{position:absolute;right:10px;top:50%;transform:translateY(-50%);opacity:.55}
 
     /* Container */
     .container{max-width:var(--maxw);margin:0 auto;padding:18px 16px 80px}
     .lead{margin:8px 0 16px;color:var(--ink-dim);font-size:14px}
-    .notice{background:var(--chip);border:1px solid var(--chip-border);padding:14px;border-radius:12px;color:var(--brand);font-size:14px}
+    .notice{background:var(--chip);border:1px solid var(--chip-border);padding:14px 18px;border-radius:12px;color:var(--brand);font-size:14px;line-height:1.6}
 
     /* Nav chips */
     .nav{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0}
@@ -69,8 +69,8 @@
 
     /* Mobile tweaks */
     @media (max-width:640px){
-      .bar{flex-direction:column;align-items:flex-start;gap:8px}
-      .search{max-width:100%;width:100%}
+      .bar{flex-direction:column;align-items:center;text-align:center;gap:6px}
+      h1.title{font-size:clamp(24px,8.5vw,36px)} /* bigger on mobile & centered */
       .ig{font-size:12px}
       .grid{grid-template-columns:1fr}
     }
@@ -81,15 +81,17 @@
     <div class="bar">
       <h1 class="title">36.5도 여름 동쪽점</h1>
       <div class="ig">인스타그램: <a href="https://www.instagram.com/365csummer" target="_blank" rel="noopener">@365csummer</a></div>
-      <div class="search">
-        <input id="q" type="search" placeholder="메뉴 검색 (예: 우동, 라임, 보드카)…" aria-label="메뉴 검색" />
-        <span class="icon">🔎</span>
-      </div>
     </div>
   </header>
 
   <main class="container">
     <p class="notice">여름의 마스코트 냥이 이름은 <strong>파도</strong>입니다 🐾 사람을 좋아하지만 잘 물기도 해요. 서로의 안전을 위해 <strong>눈으로만</strong> 예뻐해주세요 😽</p>
+
+    <!-- Search moved under notice -->
+    <div class="search" style="margin:12px 0 4px">
+      <input id="q" type="search" placeholder="메뉴 검색 (예: 우동, 라임, 보드카)…" aria-label="메뉴 검색" />
+      <span class="icon">🔎</span>
+    </div>
 
     <!-- Quick nav chips (scroll to section) -->
     <nav class="nav" aria-label="섹션 이동">
