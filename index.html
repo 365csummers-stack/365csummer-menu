@@ -29,11 +29,11 @@
     /* Header */
     .site-header{position:sticky;top:0;z-index:50;background:linear-gradient(180deg,#ffffffee,#ffffffcc 60%,transparent);backdrop-filter:saturate(1.2) blur(6px);border-bottom:1px solid var(--rule)}
     .bar{max-width:var(--maxw);margin:0 auto;padding:14px 16px;display:flex;gap:12px;align-items:center;justify-content:space-between}
-    h1.title{margin:0;font-size:clamp(20px,3.8vw,28px);font-weight:800;letter-spacing:-.01em}
+    h1.title{margin:0;font-size:clamp(18px,4.2vw,28px);font-weight:800;letter-spacing:-.01em}
     .ig{font-size:13px;color:var(--ink-dim)}
 
     /* Search */
-    .search{flex:1;max-width:380px;position:relative}
+    .search{flex:1;max-width:420px;position:relative}
     .search input{width:100%;padding:12px 40px 12px 12px;border:1px solid var(--rule);border-radius:12px;background:#fff;outline:none}
     .search .icon{position:absolute;right:10px;top:50%;transform:translateY(-50%);opacity:.55}
 
@@ -67,9 +67,12 @@
     /* Footer sticky back-to-top */
     .to-top{position:fixed;right:16px;bottom:16px;background:#000;color:#fff;border:0;border-radius:999px;padding:12px 14px;font-size:13px;box-shadow:var(--shadow);cursor:pointer}
 
+    /* Mobile tweaks */
     @media (max-width:640px){
+      .bar{flex-direction:column;align-items:flex-start;gap:8px}
+      .search{max-width:100%;width:100%}
+      .ig{font-size:12px}
       .grid{grid-template-columns:1fr}
-      .search{max-width:100%}
     }
   </style>
 </head>
@@ -77,11 +80,11 @@
   <header class="site-header">
     <div class="bar">
       <h1 class="title">36.5도 여름 동쪽점</h1>
+      <div class="ig">인스타그램: <a href="https://www.instagram.com/365csummer" target="_blank" rel="noopener">@365csummer</a></div>
       <div class="search">
         <input id="q" type="search" placeholder="메뉴 검색 (예: 우동, 라임, 보드카)…" aria-label="메뉴 검색" />
         <span class="icon">🔎</span>
       </div>
-      <div class="ig">인스타그램: <a href="https://www.instagram.com/365csummer" target="_blank" rel="noopener">@365csummer</a></div>
     </div>
   </header>
 
@@ -233,15 +236,16 @@
   <button class="to-top" aria-label="맨 위로" title="맨 위로">▲ 맨 위로</button>
 
   <script>
-    // Smooth scroll for section chips
+    // Smooth scroll for section chips (dynamic header height)
     document.querySelectorAll('.chip').forEach(btn=>{
       btn.addEventListener('click',()=>{
         document.querySelectorAll('.chip').forEach(b=>b.classList.remove('active'));
         btn.classList.add('active');
         const sel=btn.getAttribute('data-scroll');
         const target=document.querySelector(sel);
+        const header=document.querySelector('.site-header');
         if(target){
-          const y=target.getBoundingClientRect().top + window.scrollY - 76; // header offset
+          const y=target.getBoundingClientRect().top + window.scrollY - (header?.offsetHeight || 76);
           window.scrollTo({top:y,behavior:'smooth'});
         }
       })
@@ -259,22 +263,19 @@
 
     const normalize=s=>s.normalize('NFKD').toLowerCase();
     let deb;
-    q.addEventListener('input',()=>{
+    q?.addEventListener('input',()=>{
       clearTimeout(deb);
       deb=setTimeout(()=>{
         const term=normalize(q.value.trim());
-        // Show all when empty
         if(!term){
           index.forEach(el=>el.style.display='');
           sections.forEach(sec=>sec.style.display='');
           return;
         }
-        // Filter items
         index.forEach(el=>{
           const hay=(el.getAttribute('data-k')||'') + ' ' + el.textContent;
           el.style.display = normalize(hay).includes(term) ? '' : 'none';
         });
-        // Hide empty sections
         sections.forEach(sec=>{
           const any=[...sec.querySelectorAll('.item')].some(x=>x.style.display!=='none');
           sec.style.display = any ? '' : 'none';
