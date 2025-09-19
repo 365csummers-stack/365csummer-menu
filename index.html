@@ -7,14 +7,14 @@
   <meta name="description" content="36.5도 여름 동쪽점 · 푸드 · 주류 · 칵테일 · 음료 메뉴" />
   <style>
     :root{
-      --bg:#f0f8ff;
-      --ink:#222;
-      --ink-dim:#555;
-      --brand:#007acc;
-      --card:#fff;
-      --chip:#e6f7ff;
-      --chip-border:#b3e5fc;
-      --rule:#eaeef2;
+      --bg:#f0f8ff;           /* AliceBlue */
+      --ink:#222;             /* text */
+      --ink-dim:#555;         /* secondary text */
+      --brand:#007acc;        /* blue */
+      --card:#fff;            /* surface */
+      --chip:#e6f7ff;         /* light chip */
+      --chip-border:#b3e5fc;  /* chip border */
+      --rule:#eaeef2;         /* dividers */
       --shadow:0 4px 12px rgba(0,0,0,.06);
       --radius:14px;
       --radius-sm:10px;
@@ -26,29 +26,33 @@
     body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,'Apple SD Gothic Neo','Noto Sans KR',sans-serif;background:var(--bg);color:var(--ink)}
     a{color:var(--brand);text-decoration:none}
 
+    /* Header */
     .site-header{position:sticky;top:0;z-index:50;background:linear-gradient(180deg,#ffffffee,#ffffffcc 60%,transparent);backdrop-filter:saturate(1.2) blur(6px);border-bottom:1px solid var(--rule)}
     .bar{max-width:var(--maxw);margin:0 auto;padding:14px 16px;display:flex;gap:12px;align-items:center;justify-content:space-between}
     h1.title{margin:0;font-size:clamp(20px,3.8vw,28px);font-weight:800;letter-spacing:-.01em}
     .ig{font-size:13px;color:var(--ink-dim)}
 
+    /* Search */
     .search{flex:1;max-width:380px;position:relative}
     .search input{width:100%;padding:12px 40px 12px 12px;border:1px solid var(--rule);border-radius:12px;background:#fff;outline:none}
     .search .icon{position:absolute;right:10px;top:50%;transform:translateY(-50%);opacity:.55}
 
+    /* Container */
     .container{max-width:var(--maxw);margin:0 auto;padding:18px 16px 80px}
     .lead{margin:8px 0 16px;color:var(--ink-dim);font-size:14px}
-    .notice{background:var(--chip);border:1px solid var(--chip-border);padding:14px 18px;border-radius:12px;color:var(--brand);font-size:14px;line-height:1.6}
-    .notice ul{margin:6px 0 0 18px;padding:0}
-    .notice li{margin-bottom:4px;}
+    .notice{background:var(--chip);border:1px solid var(--chip-border);padding:14px;border-radius:12px;color:var(--brand);font-size:14px}
 
+    /* Nav chips */
     .nav{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0}
     .chip{border:1px solid var(--rule);background:#fff;padding:8px 12px;border-radius:999px;font-size:13px;cursor:pointer}
     .chip.active{background:#000;color:#fff;border-color:#000}
 
+    /* Sections */
     section.menu{margin:18px 0 28px;background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);padding:16px}
     section.menu h2{margin:0 0 10px;padding-bottom:8px;border-bottom:2px solid var(--chip-border);color:var(--brand);font-size:20px}
     .subtitle{margin:18px 0 10px;font-weight:700;color:var(--brand);border-bottom:1px dashed var(--rule);padding-bottom:6px}
 
+    /* Items */
     ul.items{list-style:none;margin:0;padding:0}
     li.item{display:flex;justify-content:space-between;gap:12px;padding:12px 0;border-bottom:1px dashed var(--rule)}
     li.item:last-child{border-bottom:0}
@@ -56,9 +60,11 @@
     .i-price{white-space:nowrap;color:var(--brand);font-weight:700}
     .i-desc{display:block;margin-top:6px;color:#777;font-size:12.5px;line-height:1.45}
 
+    /* Cocktail grid */
     .grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
     .grid .item{border:1px solid var(--rule);background:#fafafa;border-radius:var(--radius-xs);padding:10px}
 
+    /* Footer sticky back-to-top */
     .to-top{position:fixed;right:16px;bottom:16px;background:#000;color:#fff;border:0;border-radius:999px;padding:12px 14px;font-size:13px;box-shadow:var(--shadow);cursor:pointer}
 
     @media (max-width:640px){
@@ -80,14 +86,7 @@
   </header>
 
   <main class="container">
-    <div class="notice">
-      <strong>공지사항</strong>
-      <ul>
-        <li>물과 냅킨은 셀프입니다. 카운터의 우측편에 마련되어있습니다.</li>
-        <li>화장실은 입구쪽 녹색문으로 들어가시면 됩니다.</li>
-        <li>여름의 마스코트 냥이 이름은 <strong>파도</strong>입니다. 🐾 파도는 사람을 참 좋아하는 장난꾸러기이지만, 잘 물기도 해요. 서로의 안전을 위해 눈으로만 예뻐해주세요.</li>
-      </ul>
-    </div>
+    <p class="notice">여름의 마스코트 냥이 이름은 <strong>파도</strong>입니다 🐾 사람을 좋아하지만 잘 물기도 해요. 서로의 안전을 위해 <strong>눈으로만</strong> 예뻐해주세요 😽</p>
 
     <!-- Quick nav chips (scroll to section) -->
     <nav class="nav" aria-label="섹션 이동">
@@ -99,12 +98,142 @@
       <button class="chip" data-scroll="#cocktail">Cocktail</button>
     </nav>
 
-    <!-- (나머지 메뉴 섹션 그대로) -->
+    <!-- Summer Plate -->
+    <section id="plate" class="menu" data-section>
+      <h2>🍽️ Summer Plate</h2>
+      <ul class="items">
+        <li class="item" data-k="여름볶음우동 해물 데리마요 야끼우동 가쓰오부시"><span><span class="i-name">여름볶음우동(해물)</span><span class="i-desc">매콤달콤한 데리마요 야끼우동에 해물과 가쓰오부시가 듬뿍</span></span><span class="i-price">12,900</span></li>
+        <li class="item" data-k="여름볶음우동 우삼겹 데리마요 야끼우동"><span><span class="i-name">여름볶음우동(우삼겹)</span><span class="i-desc">매콤달콤한 데리마요 야끼우동에 든든한 우삼겹이 듬뿍</span></span><span class="i-price">13,900</span></li>
+        <li class="item" data-k="삼겹살 비빔면 매콤 면"><span><span class="i-name">삼겹살 비빔면</span><span class="i-desc">노릇노릇하게 잘 구워진 우삼겹과 매콤한 비빔면의 만남</span></span><span class="i-price">16,900</span></li>
+        <li class="item" data-k="여름 우동볶이 고추장 불닭 치즈"><span><span class="i-name">여름 우동볶이</span><span class="i-desc">매콤한 고추장 베이스의 특제 소스로 만든 우동볶이 (불닭볶음면 정도 맵기) · <b>치즈추가 +3,000</b></span></span><span class="i-price">14,900</span></li>
+        <li class="item" data-k="썸머 쉬림프 새우 칠리"><span><span class="i-name">썸머 쉬림프</span><span class="i-desc">매콤달콤 칠리소스에 양껏 버무려진 새우</span></span><span class="i-price">19,900</span></li>
+        <li class="item" data-k="여름 닭강정 치킨"><span><span class="i-name">여름 닭강정</span><span class="i-desc">겉바속촉 언제 먹어도 맛있는 닭강정</span></span><span class="i-price">13,900</span></li>
+        <li class="item" data-k="모짜르트 토마토 까프레제 발사믹 치즈"><span><span class="i-name">모짜르트 토마토</span><span class="i-desc">토마토와 치즈, 그리고 발사믹 소스의 만남 (와인뿐만 아니라 맥주와도 안성맞춤!)</span></span><span class="i-price">11,900</span></li>
+        <li class="item" data-k="치즈 그라탕 감자 소시지 살사 모짜렐라"><span><span class="i-name">치즈 그라탕</span><span class="i-desc">감자와 후랑크소시지, 특제 살사소스 위에 덮인 모짜렐라</span></span><span class="i-price">16,900</span></li>
+        <li class="item" data-k="코-온 치즈 옥수수콘 마요"><span><span class="i-name">코-온 치즈</span><span class="i-desc">옥수수콘에 치즈와 마요네즈 듬뿍</span></span><span class="i-price">14,900</span></li>
+        <li class="item" data-k="나쵸 치즈 살사"><span><span class="i-name">나쵸</span><span class="i-desc">바삭한 나쵸를 치즈소스와 살사소스에 찍먹</span></span><span class="i-price">8,900</span></li>
+        <li class="item" data-k="쥐포 석쇠 옛날 특제소스"><span><span class="i-name">쥐를 말리다니(쥐포)</span><span class="i-desc">석쇠에 쥐포 구워먹던 옛날 그맛! 특제소스와 함께</span></span><span class="i-price">11,900</span></li>
+        <li class="item" data-k="촉촉오징어 반건조 초장마요"><span><span class="i-name">촉촉오징어</span><span class="i-desc">촉촉한 반건조 오징어와 초장마요</span></span><span class="i-price">12,900</span></li>
+        <li class="item" data-k="모듬 마른안주 진미채 오징어 주전부리 나쵸 비스켓"><span><span class="i-name">모듬 마른안주</span><span class="i-desc">가볍게 먹기 좋은 안주들 총집합! 진미채 오징어와 각종 주전부리, 나쵸와 비스켓이 한 접시에</span></span><span class="i-price">14,900</span></li>
+        <li class="item" data-k="먹태 맥주킬러"><span><span class="i-name">먹태</span><span class="i-desc">자꾸 손이 가는 맥주킬러!</span></span><span class="i-price">15,900</span></li>
+      </ul>
+    </section>
+
+    <!-- Beer -->
+    <section id="beer" class="menu" data-section>
+      <h2>🍺 Beer</h2>
+      <ul class="items">
+        <li class="item" data-k="생맥주"> <span class="i-name">여름 생맥주</span> <span class="i-price">3,900</span></li>
+        <li class="item" data-k="패션후르츠 맥주"> <span class="i-name">패션후르츠 생맥주</span> <span class="i-price">4,900</span></li>
+        <li class="item" data-k="라임 맥주"> <span class="i-name">라임 생맥주</span> <span class="i-price">4,900</span></li>
+        <li class="item" data-k="꿀 맥주"> <span class="i-name">여름 꿀 생맥주</span> <span class="i-price">4,900</span></li>
+        <li class="item" data-k="라임 꿀 맥주"> <span class="i-name">라임 꿀 생맥주</span> <span class="i-price">4,900</span></li>
+        <li class="item" data-k="클라라"> <span class="i-name">클라라</span> <span class="i-price">4,900</span></li>
+        <li class="item" data-k="깔루아 맥주"> <span class="i-name">깔루아 생맥주</span> <span class="i-price">5,900</span></li>
+        <li class="item" data-k="빅맥"> <span class="i-name">빅맥</span> <span class="i-price">6,500</span></li>
+        <li class="item" data-k="라임 빅맥"> <span class="i-name">라임빅맥</span> <span class="i-price">7,900</span></li>
+      </ul>
+    </section>
+
+    <!-- Beverage -->
+    <section id="beverage" class="menu" data-section>
+      <h2>🥤 Beverage</h2>
+      <ul class="items">
+        <li class="item" data-k="트리플 베리 에이드"> <span class="i-name">트리플베리에이드</span> <span class="i-price">5,900</span></li>
+        <li class="item" data-k="라임에이드"> <span class="i-name">라임에이드</span> <span class="i-price">5,900</span></li>
+        <li class="item" data-k="패션후르츠 에이드"> <span class="i-name">패션후르츠에이드</span> <span class="i-price">5,900</span></li>
+        <li class="item" data-k="알콜 추가"> <span class="i-name">알콜 추가</span> <span class="i-price">+1,500</span></li>
+      </ul>
+    </section>
+
+    <!-- Simsool -->
+    <section id="simsool" class="menu" data-section>
+      <h2>🍶 Simsool</h2>
+      <ul class="items">
+        <li class="item" data-k="심술 7도 포도 블루베리 탄산"> <span><span class="i-name">심술 7도</span><span class="i-desc">과일의 달달함과 탄산의 시원함 (포도&블루베리)</span></span> <span class="i-price">7,000</span></li>
+        <li class="item" data-k="심술 10도 화이트와인 자몽 깔라만시"> <span><span class="i-name">심술 10도</span><span class="i-desc">새콤달콤한 화이트와인맛 (자몽&깔라만시)</span></span> <span class="i-price">7,000</span></li>
+        <li class="item" data-k="심술 12도 와인 포도 블루베리"> <span><span class="i-name">심술 12도</span><span class="i-desc">과일맛과 깔끔한 뒷맛으로 느껴지는 와인의 풍미 (포도&블루베리)</span></span> <span class="i-price">7,000</span></li>
+      </ul>
+    </section>
+
+    <!-- Whiskey & Wine -->
+    <section id="whisky" class="menu" data-section>
+      <h2>🥃 Whiskey &amp; Wine</h2>
+      <ul class="items">
+        <li class="item" data-k="잭다니엘 500"> <span class="i-name">Jack Daniel’s 500ml</span> <span class="i-price">95,000</span></li>
+        <li class="item" data-k="잭다니엘 700"> <span class="i-name">Jack Daniel’s 700ml</span> <span class="i-price">120,000</span></li>
+        <li class="item" data-k="호세 쿠에르보 데킬라"> <span class="i-name">Jose Cuervo Tequila</span> <span class="i-price">95,000</span></li>
+        <li class="item" data-k="봄베이 진 750"> <span class="i-name">Bombay Gin 750ml</span> <span class="i-price">100,000</span></li>
+        <li class="item" data-k="산토리 위스키"> <span class="i-name">산토리 위스키</span> <span class="i-price">100,000</span></li>
+        <li class="item" data-k="하이볼"> <span class="i-name">하이볼</span> <span class="i-price">7,900</span></li>
+        <li class="item" data-k="데킬라 보드카 샷"> <span class="i-name">데킬라/보드카 샷</span> <span class="i-price">3,900</span></li>
+        <li class="item" data-k="위스키 샷"> <span class="i-name">위스키 샷</span> <span class="i-price">4,900</span></li>
+        <li class="item" data-k="발디비에소 까쇼 레드 와인"> <span class="i-name">발디비에소 까쇼(레드와인)</span> <span class="i-price">45,000</span></li>
+        <li class="item" data-k="모스카토 다스티 화이트 와인"> <span class="i-name">모스카토 다스티(화이트와인)</span> <span class="i-price">45,000</span></li>
+        <li class="item" data-k="하우스 와인"> <span class="i-name">하우스 와인</span> <span class="i-price">5,900</span></li>
+        <li class="item" data-k="상그리아"> <span class="i-name">상그리아</span> <span class="i-price">6,900</span></li>
+        <li class="item" data-k="뱅쇼 겨울 한정"> <span class="i-name">여름 뱅쇼 (겨울 한정 메뉴)</span> <span class="i-price">7,000</span></li>
+      </ul>
+    </section>
+
+    <!-- Cocktail -->
+    <section id="cocktail" class="menu" data-section>
+      <h2>🍸 Cocktail</h2>
+
+      <div class="subtitle">On the Rock</div>
+      <div class="grid" role="list" aria-label="온더락 칵테일">
+        <div class="item" data-k="보드카 오렌지"><span class="i-name">보드카 오렌지</span><span class="i-price">6,900</span></div>
+        <div class="item" data-k="보드카 토닉"><span class="i-name">보드카 토닉</span><span class="i-price">6,900</span></div>
+        <div class="item" data-k="진 토닉"><span class="i-name">진 토닉</span><span class="i-price">6,900</span></div>
+        <div class="item" data-k="보드카 크랜배리"><span class="i-name">보드카 크랜배리</span><span class="i-price">6,900</span></div>
+        <div class="item" data-k="보드카 라임"><span class="i-name">보드카 라임</span><span class="i-price">7,400</span></div>
+        <div class="item" data-k="봄베이 진 토닉"><span class="i-name">봄베이 진 토닉</span><span class="i-price">7,900</span></div>
+        <div class="item" data-k="베일리스 밀크"><span class="i-name">베일리스 밀크</span><span class="i-price">7,400</span></div>
+        <div class="item" data-k="깔루아 밀크"><span class="i-name">깔루아 밀크</span><span class="i-price">7,400</span></div>
+        <div class="item" data-k="말리부 오렌지"><span class="i-name">말리부 오렌지</span><span class="i-price">7,400</span></div>
+        <div class="item" data-k="말리부 밀크"><span class="i-name">말리부 밀크</span><span class="i-price">7,400</span></div>
+        <div class="item" data-k="잭콕"><span class="i-name">잭콕</span><span class="i-price">7,400</span></div>
+        <div class="item" data-k="블랙 러시안"><span class="i-name">블랙 러시안</span><span class="i-price">7,400</span></div>
+        <div class="item" data-k="데빌스 얼루어"><span class="i-name">데빌스 얼루어</span><span class="i-price">7,900</span></div>
+        <div class="item" data-k="코스모 폴리탄"><span class="i-name">코스모 폴리탄</span><span class="i-price">7,400</span></div>
+        <div class="item" data-k="쿠바 리브레"><span class="i-name">쿠바 리브레</span><span class="i-price">7,400</span></div>
+        <div class="item" data-k="카미카제"><span class="i-name">카미카제</span><span class="i-price">7,400</span></div>
+        <div class="item" data-k="화이트 러시안"><span class="i-name">화이트 러시안</span><span class="i-price">8,400</span></div>
+        <div class="item" data-k="와이낫"><span class="i-name">와이낫</span><span class="i-price">7,900</span></div>
+        <div class="item" data-k="그랑블루"><span class="i-name">그랑블루</span><span class="i-price">7,900</span></div>
+      </div>
+
+      <div class="subtitle">Tumbler & Mix</div>
+      <div class="grid" role="list" aria-label="텀블러 & 믹스 칵테일">
+        <div class="item" data-k="데킬라 선라이즈"><span class="i-name">데킬라 선 라이즈</span><span class="i-price">8,400</span></div>
+        <div class="item" data-k="미도리 사워"><span class="i-name">미도리 사워</span><span class="i-price">8,400</span></div>
+        <div class="item" data-k="피치 크러쉬"><span class="i-name">피치 크러쉬</span><span class="i-price">8,400</span></div>
+        <div class="item" data-k="메로나"><span class="i-name">메로나</span><span class="i-price">8,400</span></div>
+        <div class="item" data-k="피치 코코"><span class="i-name">피치 코코</span><span class="i-price">8,400</span></div>
+        <div class="item" data-k="바이올렛"><span class="i-name">바이올렛</span><span class="i-price">8,900</span></div>
+        <div class="item" data-k="러브 액츄얼리"><span class="i-name">러브액츄얼리</span><span class="i-price">8,400</span></div>
+        <div class="item" data-k="피치 플라워"><span class="i-name">피치 플라워</span><span class="i-price">8,900</span></div>
+        <div class="item" data-k="말리부 크랜 파인"><span class="i-name">말리부 크랜 파인</span><span class="i-price">8,400</span></div>
+        <div class="item" data-k="섹스 온 더 비치"><span class="i-name">섹스 온 더 비치</span><span class="i-price">8,900</span></div>
+        <div class="item" data-k="써머"><span class="i-name">Summer</span><span class="i-price">8,900</span></div>
+        <div class="item" data-k="체리럼 피즈"><span class="i-name">체리럼 피즈</span><span class="i-price">8,400</span></div>
+        <div class="item" data-k="싱가폴 슬링"><span class="i-name">싱가폴 슬링</span><span class="i-price">8,900</span></div>
+        <div class="item" data-k="수리베리 체리베리"><span class="i-name">수리베리체리베리</span><span class="i-price">8,400</span></div>
+        <div class="item" data-k="블루 하와이"><span class="i-name">블루 하와이</span><span class="i-price">8,900</span></div>
+        <div class="item" data-k="린치버그 레몬에이드"><span class="i-name">린치버그 레몬에이드</span><span class="i-price">8,900</span></div>
+        <div class="item" data-k="도쿄 아이스티"><span class="i-name">도쿄 아이스티</span><span class="i-price">9,900</span></div>
+        <div class="item" data-k="준벅"><span class="i-name">준벅</span><span class="i-price">9,400</span></div>
+        <div class="item" data-k="동해"><span class="i-name">동해</span><span class="i-price">9,900</span></div>
+        <div class="item" data-k="롱 아일랜드 아이스티"><span class="i-name">롱 아일랜드 아이스티</span><span class="i-price">9,400</span></div>
+        <div class="item" data-k="롱비치 아이스티"><span class="i-name">롱비치 아이스티</span><span class="i-price">9,400</span></div>
+      </div>
+    </section>
   </main>
 
   <button class="to-top" aria-label="맨 위로" title="맨 위로">▲ 맨 위로</button>
 
   <script>
+    // Smooth scroll for section chips
     document.querySelectorAll('.chip').forEach(btn=>{
       btn.addEventListener('click',()=>{
         document.querySelectorAll('.chip').forEach(b=>b.classList.remove('active'));
@@ -112,16 +241,18 @@
         const sel=btn.getAttribute('data-scroll');
         const target=document.querySelector(sel);
         if(target){
-          const y=target.getBoundingClientRect().top + window.scrollY - 76;
+          const y=target.getBoundingClientRect().top + window.scrollY - 76; // header offset
           window.scrollTo({top:y,behavior:'smooth'});
         }
       })
     })
 
+    // Back to top
     document.querySelector('.to-top').addEventListener('click',()=>{
       window.scrollTo({top:0,behavior:'smooth'})
     })
 
+    // Simple search filter (matches data-k, name text)
     const q=document.getElementById('q');
     const sections=[...document.querySelectorAll('[data-section]')];
     const index=sections.flatMap(sec=>[...sec.querySelectorAll('.item')]);
@@ -132,15 +263,18 @@
       clearTimeout(deb);
       deb=setTimeout(()=>{
         const term=normalize(q.value.trim());
+        // Show all when empty
         if(!term){
           index.forEach(el=>el.style.display='');
           sections.forEach(sec=>sec.style.display='');
           return;
         }
+        // Filter items
         index.forEach(el=>{
           const hay=(el.getAttribute('data-k')||'') + ' ' + el.textContent;
           el.style.display = normalize(hay).includes(term) ? '' : 'none';
         });
+        // Hide empty sections
         sections.forEach(sec=>{
           const any=[...sec.querySelectorAll('.item')].some(x=>x.style.display!=='none');
           sec.style.display = any ? '' : 'none';
