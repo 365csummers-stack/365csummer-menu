@@ -62,7 +62,9 @@
 
     /* Cocktail grid */
     .grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-    .grid .item{border:1px solid var(--rule);background:#fafafa;border-radius:var(--radius-xs);padding:10px}
+    .grid .item{display:flex;justify-content:space-between;align-items:center;border:1px solid var(--rule);background:#fafafa;border-radius:var(--radius-xs);padding:10px 12px;gap:10px}
+    .grid .i-name{font-weight:600;flex:1 1 auto;min-width:0;overflow-wrap:anywhere}
+    .grid .i-price{color:var(--brand);font-weight:700;flex:0 0 auto;text-align:right;min-width:64px}
 
     /* Footer sticky back-to-top */
     .to-top{position:fixed;right:16px;bottom:16px;background:#000;color:#fff;border:0;border-radius:999px;padding:12px 14px;font-size:13px;box-shadow:var(--shadow);cursor:pointer}
