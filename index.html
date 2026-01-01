@@ -7,7 +7,7 @@
   <meta name="description" content="36.5도 여름 동쪽점 · 푸드 · 주류 · 칵테일 · 음료 메뉴" />
   <style>
     :root{
-      --bg:#D2EFE5;           /* 민트 배경 */
+      --bg:#D2EFE5;
       --ink:#222;
       --ink-dim:#555;
       --brand:#007acc;
@@ -30,25 +30,13 @@
     }
     a{color:var(--brand);text-decoration:none}
 
-    /* ========== Cover (첫 화면) ========== */
-    .cover{
-      position:fixed; inset:0; z-index:9999;
-      background:var(--bg);
-      display:flex; align-items:stretch; justify-content:stretch;
-    }
+    /* Cover */
+    .cover{position:fixed; inset:0; z-index:9999; background:var(--bg); display:flex}
     .cover.hidden{display:none}
-    .cover .bgimg{
-      position:absolute; inset:0;
-      width:100%; height:100%;
-      object-fit:cover;
-      object-position:center;
-    }
+    .cover .bgimg{position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:center}
     .cover .cta-wrap{
-      position:relative; z-index:2;
-      width:100%;
-      display:flex;
-      align-items:flex-end;
-      justify-content:center;
+      position:relative; z-index:2; width:100%;
+      display:flex; align-items:flex-end; justify-content:center;
       padding:18px 16px calc(18px + env(safe-area-inset-bottom));
       pointer-events:none;
     }
@@ -98,7 +86,6 @@
     /* Sections */
     section.menu{margin:18px 0 28px;background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);padding:16px}
     section.menu h2{margin:0 0 10px;padding-bottom:8px;border-bottom:2px solid var(--chip-border);color:var(--brand);font-size:20px}
-    .subtitle{margin:18px 0 10px;font-weight:800;color:var(--brand);border-bottom:1px dashed var(--rule);padding-bottom:6px}
 
     /* Items (list) */
     ul.items{list-style:none;margin:0;padding:0}
@@ -119,7 +106,7 @@
     .grid .i-name{font-weight:700;display:block;min-width:0;overflow-wrap:anywhere}
     .grid .i-price{color:var(--brand);font-weight:800;flex:0 0 auto;text-align:right;min-width:64px}
 
-    /* Sweet/ABV stars (always visible) */
+    /* Sweet/ABV */
     .meta{
       margin-top:6px;
       display:flex;
@@ -159,16 +146,11 @@
       font-weight:800;
       cursor:pointer;
     }
-    .sortbtn.active{
-      background:#000;
-      color:#fff;
-      border-color:#000;
-    }
+    .sortbtn.active{background:#000;color:#fff;border-color:#000}
 
-    /* Footer sticky back-to-top */
+    /* Back-to-top */
     .to-top{position:fixed;right:16px;bottom:16px;background:#000;color:#fff;border:0;border-radius:999px;padding:12px 14px;font-size:13px;box-shadow:var(--shadow);cursor:pointer}
 
-    /* Mobile tweaks */
     @media (max-width:640px){
       .bar{flex-direction:column;align-items:center;text-align:center;gap:6px}
       h1.title{font-size:clamp(24px,8.5vw,36px)}
@@ -179,7 +161,7 @@
 </head>
 <body>
 
-  <!-- ✅ 첫 화면(표지) -->
+  <!-- 첫 화면(표지) -->
   <section class="cover" id="cover">
     <img class="bgimg" src="36.5csummer.png" alt="36.5도 여름 동쪽점 안내" />
     <div class="cta-wrap">
@@ -187,13 +169,16 @@
     </div>
   </section>
 
-  <!-- ✅ 메뉴판 페이지 -->
+  <!-- 메뉴판 페이지 -->
   <header class="site-header">
     <div class="bar">
       <h1 class="title">36.5도 여름 동쪽점</h1>
       <div class="ig">인스타그램: <a href="https://www.instagram.com/365csummer" target="_blank" rel="noopener">@365csummer</a></div>
     </div>
   </header>
+
+  <main class="container">
+    <p class="notice">여름의 마스코트 냥이 이름은 <strong>파도</strong>입니다 🐾 사람을 좋아하지만 잘 물기도 해요. 서로의 안전을 위해 <strong>눈으로만</strong> 예뻐해주세요 😽</p>
 
     <div class="search">
       <input id="q" type="search" placeholder="메뉴 검색 (예: 우동, 라임, 보드카)…" aria-label="메뉴 검색" />
@@ -233,15 +218,15 @@
     <section id="beer" class="menu" data-section>
       <h2>🍺 Beer</h2>
       <ul class="items">
-        <li class="item" data-k="생맥주"> <span class="i-name">여름 생맥주</span> <span class="i-price">3,900</span></li>
-        <li class="item" data-k="패션후르츠 맥주"> <span class="i-name">패션후르츠 생맥주</span> <span class="i-price">4,900</span></li>
-        <li class="item" data-k="라임 맥주"> <span class="i-name">라임 생맥주</span> <span class="i-price">4,900</span></li>
-        <li class="item" data-k="꿀 맥주"> <span class="i-name">여름 꿀 생맥주</span> <span class="i-price">4,900</span></li>
-        <li class="item" data-k="라임 꿀 맥주"> <span class="i-name">라임 꿀 생맥주</span> <span class="i-price">5,400</span></li>
-        <li class="item" data-k="클라라"> <span class="i-name">클라라</span> <span class="i-price">4,900</span></li>
-        <li class="item" data-k="깔루아 맥주"> <span class="i-name">깔루아 생맥주</span> <span class="i-price">5,900</span></li>
-        <li class="item" data-k="빅맥"> <span class="i-name">빅맥</span> <span class="i-price">6,900</span></li>
-        <li class="item" data-k="라임 빅맥"> <span class="i-name">라임빅맥</span> <span class="i-price">7,900</span></li>
+        <li class="item" data-k="생맥주"><span class="i-name">여름 생맥주</span><span class="i-price">3,900</span></li>
+        <li class="item" data-k="패션후르츠 맥주"><span class="i-name">패션후르츠 생맥주</span><span class="i-price">4,900</span></li>
+        <li class="item" data-k="라임 맥주"><span class="i-name">라임 생맥주</span><span class="i-price">4,900</span></li>
+        <li class="item" data-k="꿀 맥주"><span class="i-name">여름 꿀 생맥주</span><span class="i-price">4,900</span></li>
+        <li class="item" data-k="라임 꿀 맥주"><span class="i-name">라임 꿀 생맥주</span><span class="i-price">5,400</span></li>
+        <li class="item" data-k="클라라"><span class="i-name">클라라</span><span class="i-price">4,900</span></li>
+        <li class="item" data-k="깔루아 맥주"><span class="i-name">깔루아 생맥주</span><span class="i-price">5,900</span></li>
+        <li class="item" data-k="빅맥"><span class="i-name">빅맥</span><span class="i-price">6,900</span></li>
+        <li class="item" data-k="라임 빅맥"><span class="i-name">라임빅맥</span><span class="i-price">7,900</span></li>
       </ul>
     </section>
 
@@ -249,10 +234,10 @@
     <section id="beverage" class="menu" data-section>
       <h2>🥤 Beverage</h2>
       <ul class="items">
-        <li class="item" data-k="트리플 베리 에이드"> <span class="i-name">트리플베리에이드</span> <span class="i-price">5,900</span></li>
-        <li class="item" data-k="라임에이드"> <span class="i-name">라임에이드</span> <span class="i-price">5,900</span></li>
-        <li class="item" data-k="패션후르츠 에이드"> <span class="i-name">패션후르츠에이드</span> <span class="i-price">5,900</span></li>
-        <li class="item" data-k="알콜 추가"> <span class="i-name">알콜 추가</span> <span class="i-price">+2,000</span></li>
+        <li class="item" data-k="트리플 베리 에이드"><span class="i-name">트리플베리에이드</span><span class="i-price">5,900</span></li>
+        <li class="item" data-k="라임에이드"><span class="i-name">라임에이드</span><span class="i-price">5,900</span></li>
+        <li class="item" data-k="패션후르츠 에이드"><span class="i-name">패션후르츠에이드</span><span class="i-price">5,900</span></li>
+        <li class="item" data-k="알콜 추가"><span class="i-name">알콜 추가</span><span class="i-price">+2,000</span></li>
       </ul>
     </section>
 
@@ -260,8 +245,8 @@
     <section id="simsool" class="menu" data-section>
       <h2>🍶 Simsool</h2>
       <ul class="items">
-        <li class="item" data-k="심술 7도 포도 블루베리 탄산"> <span><span class="i-name">심술 7도</span><span class="i-desc">과일의 달달함과 탄산의 시원함 (포도&블루베리)</span></span> <span class="i-price">7,000</span></li>
-        <li class="item" data-k="심술 12도 와인 포도 블루베리"> <span><span class="i-name">심술 12도</span><span class="i-desc">과일맛과 깔끔한 뒷맛으로 느껴지는 와인의 풍미 (포도&블루베리)</span></span> <span class="i-price">7,000</span></li>
+        <li class="item" data-k="심술 7도 포도 블루베리 탄산"><span><span class="i-name">심술 7도</span><span class="i-desc">과일의 달달함과 탄산의 시원함 (포도&블루베리)</span></span><span class="i-price">7,000</span></li>
+        <li class="item" data-k="심술 12도 와인 포도 블루베리"><span><span class="i-name">심술 12도</span><span class="i-desc">과일맛과 깔끔한 뒷맛으로 느껴지는 와인의 풍미 (포도&블루베리)</span></span><span class="i-price">7,000</span></li>
       </ul>
     </section>
 
@@ -269,26 +254,25 @@
     <section id="whisky" class="menu" data-section>
       <h2>🥃 Whiskey &amp; Wine</h2>
       <ul class="items">
-        <li class="item" data-k="잭다니엘 500"> <span class="i-name">Jack Daniel’s 500ml</span> <span class="i-price">95,000</span></li>
-        <li class="item" data-k="잭다니엘 700"> <span class="i-name">Jack Daniel’s 700ml</span> <span class="i-price">120,000</span></li>
-        <li class="item" data-k="호세 쿠에르보 데킬라"> <span class="i-name">Jose Cuervo Tequila</span> <span class="i-price">95,000</span></li>
-        <li class="item" data-k="봄베이 진 750"> <span class="i-name">Bombay Gin 750ml</span> <span class="i-price">100,000</span></li>
-        <li class="item" data-k="산토리 위스키"> <span class="i-name">산토리 위스키</span> <span class="i-price">100,000</span></li>
-        <li class="item" data-k="하이볼"> <span class="i-name">하이볼</span> <span class="i-price">7,900</span></li>
-        <li class="item" data-k="데킬라 보드카 샷"> <span class="i-name">데킬라/보드카 샷</span> <span class="i-price">3,900</span></li>
-        <li class="item" data-k="위스키 샷"> <span class="i-name">위스키 샷</span> <span class="i-price">5,500</span></li>
-        <li class="item" data-k="발디비에소 까쇼 레드 와인"> <span class="i-name">발디비에소 까쇼(Red)</span> <span class="i-price">45,000</span></li>
-        <li class="item" data-k="모스카토 다스티 화이트 와인"> <span class="i-name">모스카토 다스티(White)</span> <span class="i-price">45,000</span></li>
-        <li class="item" data-k="하우스 와인"> <span class="i-name">하우스 와인(Red)</span> <span class="i-price">5,900</span></li>
-        <li class="item" data-k="상그리아"> <span class="i-name">상그리아</span> <span class="i-price">6,900</span></li>
+        <li class="item" data-k="잭다니엘 500"><span class="i-name">Jack Daniel’s 500ml</span><span class="i-price">95,000</span></li>
+        <li class="item" data-k="잭다니엘 700"><span class="i-name">Jack Daniel’s 700ml</span><span class="i-price">120,000</span></li>
+        <li class="item" data-k="호세 쿠에르보 데킬라"><span class="i-name">Jose Cuervo Tequila</span><span class="i-price">95,000</span></li>
+        <li class="item" data-k="봄베이 진 750"><span class="i-name">Bombay Gin 750ml</span><span class="i-price">100,000</span></li>
+        <li class="item" data-k="산토리 위스키"><span class="i-name">산토리 위스키</span><span class="i-price">100,000</span></li>
+        <li class="item" data-k="하이볼"><span class="i-name">하이볼</span><span class="i-price">7,900</span></li>
+        <li class="item" data-k="데킬라 보드카 샷"><span class="i-name">데킬라/보드카 샷</span><span class="i-price">3,900</span></li>
+        <li class="item" data-k="위스키 샷"><span class="i-name">위스키 샷</span><span class="i-price">5,500</span></li>
+        <li class="item" data-k="발디비에소 까쇼 레드 와인"><span class="i-name">발디비에소 까쇼(Red)</span><span class="i-price">45,000</span></li>
+        <li class="item" data-k="모스카토 다스티 화이트 와인"><span class="i-name">모스카토 다스티(White)</span><span class="i-price">45,000</span></li>
+        <li class="item" data-k="하우스 와인"><span class="i-name">하우스 와인(Red)</span><span class="i-price">5,900</span></li>
+        <li class="item" data-k="상그리아"><span class="i-name">상그리아</span><span class="i-price">6,900</span></li>
       </ul>
     </section>
 
-    <!-- Cocktail -->
+    <!-- Cocktail (✅ 통합 리스트 + 통합 정렬) -->
     <section id="cocktail" class="menu" data-section>
       <h2>🍸 Cocktail</h2>
 
-      <!-- ✅ 정렬 버튼 (A 방식) -->
       <div class="sortbar" aria-label="칵테일 정렬">
         <button class="sortbtn active" data-sort="default">기본</button>
         <button class="sortbtn" data-sort="sweet-desc">당도 높은 순</button>
@@ -297,8 +281,9 @@
         <button class="sortbtn" data-sort="abv-asc">도수 낮은 순</button>
       </div>
 
-      <div class="subtitle">On the Rock</div>
-      <div class="grid cocktail-grid" id="cocktailRock" role="list" aria-label="온더락 칵테일">
+      <div class="grid cocktail-grid" id="cocktailList" role="list" aria-label="칵테일">
+        <!-- On the Rock + Tumbler & Mix 를 하나로 합침 -->
+
         <div class="item" data-k="보드카 오렌지" data-sweet="3" data-abv="1">
           <div class="left">
             <span class="i-name">보드카 오렌지</span>
@@ -365,44 +350,45 @@
           <span class="i-price">7,900</span>
         </div>
 
-        <div class="item" data-k="베일리스 밀크" data-sweet="4" data-abv="1">
+        <!-- ✅ 당도 조정(예시): 베일리스/깔루아를 3으로, 말리부류를 3으로 되돌림 -->
+        <div class="item" data-k="베일리스 밀크" data-sweet="3" data-abv="1">
           <div class="left">
             <span class="i-name">베일리스 밀크</span>
             <div class="meta">
-              <span class="tag"><span>당도</span> <span class="stars" data-stars="4"></span> <span>4/5</span></span>
+              <span class="tag"><span>당도</span> <span class="stars" data-stars="3"></span> <span>3/5</span></span>
               <span class="tag"><span>도수</span> <span class="stars" data-stars="1"></span> <span>1/5</span></span>
             </div>
           </div>
           <span class="i-price">7,400</span>
         </div>
 
-        <div class="item" data-k="깔루아 밀크" data-sweet="4" data-abv="1">
+        <div class="item" data-k="깔루아 밀크" data-sweet="3" data-abv="1">
           <div class="left">
             <span class="i-name">깔루아 밀크</span>
             <div class="meta">
-              <span class="tag"><span>당도</span> <span class="stars" data-stars="4"></span> <span>4/5</span></span>
+              <span class="tag"><span>당도</span> <span class="stars" data-stars="3"></span> <span>3/5</span></span>
               <span class="tag"><span>도수</span> <span class="stars" data-stars="1"></span> <span>1/5</span></span>
             </div>
           </div>
           <span class="i-price">7,400</span>
         </div>
 
-        <div class="item" data-k="말리부 오렌지" data-sweet="4" data-abv="1">
+        <div class="item" data-k="말리부 오렌지" data-sweet="3" data-abv="1">
           <div class="left">
             <span class="i-name">말리부 오렌지</span>
             <div class="meta">
-              <span class="tag"><span>당도</span> <span class="stars" data-stars="4"></span> <span>4/5</span></span>
+              <span class="tag"><span>당도</span> <span class="stars" data-stars="3"></span> <span>3/5</span></span>
               <span class="tag"><span>도수</span> <span class="stars" data-stars="1"></span> <span>1/5</span></span>
             </div>
           </div>
           <span class="i-price">7,400</span>
         </div>
 
-        <div class="item" data-k="말리부 밀크" data-sweet="4" data-abv="1">
+        <div class="item" data-k="말리부 밀크" data-sweet="3" data-abv="1">
           <div class="left">
             <span class="i-name">말리부 밀크</span>
             <div class="meta">
-              <span class="tag"><span>당도</span> <span class="stars" data-stars="4"></span> <span>4/5</span></span>
+              <span class="tag"><span>당도</span> <span class="stars" data-stars="3"></span> <span>3/5</span></span>
               <span class="tag"><span>도수</span> <span class="stars" data-stars="1"></span> <span>1/5</span></span>
             </div>
           </div>
@@ -507,10 +493,8 @@
           </div>
           <span class="i-price">7,900</span>
         </div>
-      </div>
 
-      <div class="subtitle">Tumbler & Mix</div>
-      <div class="grid cocktail-grid" id="cocktailMix" role="list" aria-label="텀블러 & 믹스 칵테일">
+        <!-- Mix 파트도 이어서 그대로 -->
         <div class="item" data-k="데킬라 선 라이즈" data-sweet="3" data-abv="3">
           <div class="left">
             <span class="i-name">데킬라 선 라이즈</span>
@@ -726,14 +710,14 @@
   <button class="to-top" aria-label="맨 위로" title="맨 위로">▲ 맨 위로</button>
 
   <script>
-    // ✅ 표지 → 메뉴로
+    // 표지 → 메뉴
     const cover = document.getElementById('cover');
     document.getElementById('goMenu')?.addEventListener('click', () => {
       cover.classList.add('hidden');
       window.scrollTo({ top: 0, behavior: 'instant' });
     });
 
-    // Smooth scroll for section chips
+    // Smooth scroll
     document.querySelectorAll('.chip').forEach(btn=>{
       btn.addEventListener('click',()=>{
         document.querySelectorAll('.chip').forEach(b=>b.classList.remove('active'));
@@ -753,7 +737,7 @@
       window.scrollTo({top:0,behavior:'smooth'})
     })
 
-    // Stars render (●●●○○ style)
+    // Stars render
     function renderStars(el){
       const n = Math.max(0, Math.min(5, parseInt(el.getAttribute('data-stars')||'0',10)));
       let html = '';
@@ -764,11 +748,10 @@
     }
     document.querySelectorAll('.stars').forEach(renderStars);
 
-    // Simple search filter (matches data-k, name text)
+    // Search filter
     const q=document.getElementById('q');
     const sections=[...document.querySelectorAll('[data-section]')];
     const index=sections.flatMap(sec=>[...sec.querySelectorAll('.item')]);
-
     const normalize=s=>s.normalize('NFKD').toLowerCase();
     let deb;
     q?.addEventListener('input',()=>{
@@ -791,61 +774,42 @@
       },120);
     });
 
-    // ✅ Cocktails sorting (A 방식: 버튼)
+    // ✅ Cocktails sorting (통합 리스트 1개만 정렬)
     const sortBtns = [...document.querySelectorAll('.sortbtn')];
-    const grids = [document.getElementById('cocktailRock'), document.getElementById('cocktailMix')].filter(Boolean);
+    const cocktailList = document.getElementById('cocktailList');
 
     // 기본 순서 저장
-    const originalOrder = new Map();
-    grids.forEach(grid=>{
-      originalOrder.set(grid, [...grid.children]);
-    });
+    const original = [...cocktailList.children];
 
-    function sortGrid(grid, mode){
+    function sortCocktails(mode){
       if(mode === 'default'){
-        const original = originalOrder.get(grid) || [];
-        original.forEach(node=>grid.appendChild(node));
+        original.forEach(node=>cocktailList.appendChild(node));
         return;
       }
-      const items = [...grid.children];
+      const items = [...cocktailList.children];
       const getNum = (el, key) => parseInt(el.getAttribute(key) || '0', 10);
 
-      items.sort((a,b)=>{
-        if(mode === 'sweet-desc') return getNum(b,'data-sweet') - getNum(a,'data-sweet');
-        if(mode === 'sweet-asc')  return getNum(a,'data-sweet') - getNum(b,'data-sweet');
-        if(mode === 'abv-desc')   return getNum(b,'data-abv') - getNum(a,'data-abv');
-        if(mode === 'abv-asc')    return getNum(a,'data-abv') - getNum(b,'data-abv');
-        return 0;
-      });
-
-      // 동점일 때는 원래 순서 유지 (안정 정렬 느낌)
-      const original = originalOrder.get(grid) || [];
+      // 정렬 + 동점시 기본순 유지
       const idx = new Map(original.map((node,i)=>[node,i]));
+
       items.sort((a,b)=>{
-        const primary = (()=>{
-          const getNum = (el, key) => parseInt(el.getAttribute(key) || '0', 10);
-          if(mode === 'sweet-desc') return getNum(b,'data-sweet') - getNum(a,'data-sweet');
-          if(mode === 'sweet-asc')  return getNum(a,'data-sweet') - getNum(b,'data-sweet');
-          if(mode === 'abv-desc')   return getNum(b,'data-abv') - getNum(a,'data-abv');
-          if(mode === 'abv-asc')    return getNum(a,'data-abv') - getNum(b,'data-abv');
-          return 0;
-        })();
+        let primary = 0;
+        if(mode === 'sweet-desc') primary = getNum(b,'data-sweet') - getNum(a,'data-sweet');
+        if(mode === 'sweet-asc')  primary = getNum(a,'data-sweet') - getNum(b,'data-sweet');
+        if(mode === 'abv-desc')   primary = getNum(b,'data-abv') - getNum(a,'data-abv');
+        if(mode === 'abv-asc')    primary = getNum(a,'data-abv') - getNum(b,'data-abv');
         if(primary !== 0) return primary;
         return (idx.get(a)??0) - (idx.get(b)??0);
       });
 
-      items.forEach(node=>grid.appendChild(node));
-    }
-
-    function applySort(mode){
-      grids.forEach(g=>sortGrid(g, mode));
+      items.forEach(node=>cocktailList.appendChild(node));
     }
 
     sortBtns.forEach(btn=>{
       btn.addEventListener('click',()=>{
         sortBtns.forEach(b=>b.classList.remove('active'));
         btn.classList.add('active');
-        applySort(btn.getAttribute('data-sort'));
+        sortCocktails(btn.getAttribute('data-sort'));
       });
     });
   </script>
