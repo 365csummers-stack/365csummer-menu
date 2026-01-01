@@ -7,7 +7,7 @@
   <meta name="description" content="36.5도 여름 동쪽점 · 푸드 · 주류 · 칵테일 · 음료 메뉴" />
   <style>
     :root{
-      --bg:#D2EFE5;
+      --bg:#D2EFE5;           /* 민트 배경 */
       --ink:#222;
       --ink-dim:#555;
       --brand:#007acc;
@@ -17,7 +17,6 @@
       --rule:#eaeef2;
       --shadow:0 4px 12px rgba(0,0,0,.06);
       --radius:14px;
-      --radius-sm:10px;
       --radius-xs:8px;
       --maxw:960px;
     }
@@ -33,26 +32,19 @@
 
     /* ========== Cover (첫 화면) ========== */
     .cover{
-      position:fixed;
-      inset:0;
-      z-index:9999;
+      position:fixed; inset:0; z-index:9999;
       background:var(--bg);
-      display:flex;
-      align-items:stretch;
-      justify-content:stretch;
+      display:flex; align-items:stretch; justify-content:stretch;
     }
     .cover.hidden{display:none}
     .cover .bgimg{
-      position:absolute;
-      inset:0;
-      width:100%;
-      height:100%;
+      position:absolute; inset:0;
+      width:100%; height:100%;
       object-fit:cover;
       object-position:center;
     }
     .cover .cta-wrap{
-      position:relative;
-      z-index:2;
+      position:relative; z-index:2;
       width:100%;
       display:flex;
       align-items:flex-end;
@@ -62,20 +54,17 @@
     }
     .cover .cta{
       pointer-events:auto;
-      border:0;
-      border-radius:999px;
+      border:0; border-radius:999px;
       padding:14px 18px;
-      font-size:15px;
-      font-weight:800;
-      background:#000;
-      color:#fff;
+      font-size:15px; font-weight:800;
+      background:#000; color:#fff;
       box-shadow:0 8px 20px rgba(0,0,0,.18);
       cursor:pointer;
     }
 
     /* Header */
     .site-header{
-      position:sticky;top:0;z-index:50;
+      position:sticky; top:0; z-index:50;
       background:linear-gradient(180deg,#ffffffee,#ffffffcc 60%,transparent);
       backdrop-filter:saturate(1.2) blur(6px);
       border-bottom:1px solid var(--rule)
@@ -92,13 +81,14 @@
     h1.title{margin:0;font-weight:800;letter-spacing:-.01em;font-size:clamp(20px,3.8vw,32px)}
     .ig{font-size:13px;color:var(--ink-dim)}
 
+    /* Container */
+    main.container{max-width:var(--maxw);margin:0 auto;padding:18px 16px 80px}
+    .notice{background:var(--chip);border:1px solid var(--chip-border);padding:14px 18px;border-radius:12px;color:var(--brand);font-size:14px;line-height:1.6}
+
     /* Search */
-    .search{position:relative}
+    .search{position:relative;margin:12px 0 4px}
     .search input{width:100%;padding:12px 40px 12px 12px;border:1px solid var(--rule);border-radius:12px;background:#fff;outline:none}
     .search .icon{position:absolute;right:10px;top:50%;transform:translateY(-50%);opacity:.55}
-
-    /* Container */
-    .container{max-width:var(--maxw);margin:0 auto;padding:18px 16px 80px}
 
     /* Nav chips */
     .nav{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0}
@@ -108,72 +98,74 @@
     /* Sections */
     section.menu{margin:18px 0 28px;background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);padding:16px}
     section.menu h2{margin:0 0 10px;padding-bottom:8px;border-bottom:2px solid var(--chip-border);color:var(--brand);font-size:20px}
-    .subtitle{margin:18px 0 10px;font-weight:700;color:var(--brand);border-bottom:1px dashed var(--rule);padding-bottom:6px}
+    .subtitle{margin:18px 0 10px;font-weight:800;color:var(--brand);border-bottom:1px dashed var(--rule);padding-bottom:6px}
 
-    /* Items */
+    /* Items (list) */
     ul.items{list-style:none;margin:0;padding:0}
     li.item{display:flex;justify-content:space-between;gap:12px;padding:12px 0;border-bottom:1px dashed var(--rule)}
     li.item:last-child{border-bottom:0}
     .i-name{font-weight:600}
-    .i-price{white-space:nowrap;color:var(--brand);font-weight:700}
+    .i-price{white-space:nowrap;color:var(--brand);font-weight:800}
     .i-desc{display:block;margin-top:6px;color:#777;font-size:12.5px;line-height:1.45}
 
     /* Cocktail grid */
     .grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
     .grid .item{
-      display:flex;
-      flex-wrap:wrap;                 /* ✅ 메타 줄바꿈 */
-      justify-content:flex-start;
-      align-items:flex-start;
-      border:1px solid var(--rule);
-      background:#fafafa;
-      border-radius:var(--radius-xs);
-      padding:10px 12px;
-      gap:6px 10px;
+      display:flex;justify-content:space-between;align-items:center;
+      border:1px solid var(--rule);background:#fafafa;border-radius:var(--radius-xs);
+      padding:10px 12px;gap:10px
     }
-    .grid .i-name{
-      font-weight:700;
-      flex:1 1 auto;
-      min-width:0;
-      overflow-wrap:anywhere;
-    }
-    .grid .i-price{
-      color:var(--brand);
-      font-weight:800;
-      flex:0 0 auto;
-      margin-left:auto;
-      text-align:right;
-      min-width:64px
-    }
+    .grid .left{min-width:0;flex:1 1 auto}
+    .grid .i-name{font-weight:700;display:block;min-width:0;overflow-wrap:anywhere}
+    .grid .i-price{color:var(--brand);font-weight:800;flex:0 0 auto;text-align:right;min-width:64px}
 
-    /* ✅ 당도/도수 (이름 아래) */
-    .i-meta{
-      flex:0 0 100%;
-      margin-top:2px;
-      color:#666;
-      font-size:12px;
-      line-height:1.35;
+    /* Sweet/ABV stars (always visible) */
+    .meta{
+      margin-top:6px;
       display:flex;
-      gap:12px;
+      gap:10px;
+      align-items:center;
       flex-wrap:wrap;
+      color:var(--ink-dim);
+      font-size:12px;
+      line-height:1.2;
     }
-    .i-meta .tag{
+    .tag{
       display:inline-flex;
       align-items:center;
       gap:6px;
-      white-space:nowrap;
+      background:#fff;
+      border:1px solid var(--rule);
+      border-radius:999px;
+      padding:4px 8px;
     }
-    .i-meta .label{
+    .stars{letter-spacing:1px}
+    .stars .on{color:#111}
+    .stars .off{opacity:.25}
+
+    /* Cocktail sort buttons */
+    .sortbar{
+      display:flex;
+      flex-wrap:wrap;
+      gap:8px;
+      margin:10px 0 12px;
+    }
+    .sortbtn{
+      border:1px solid var(--rule);
+      background:#fff;
+      padding:8px 10px;
+      border-radius:999px;
+      font-size:13px;
       font-weight:800;
-      color:#444;
+      cursor:pointer;
     }
-    .i-meta .stars{
-      letter-spacing:1px;
-      color:var(--brand);
-      font-weight:900;
+    .sortbtn.active{
+      background:#000;
+      color:#fff;
+      border-color:#000;
     }
 
-    /* Back-to-top */
+    /* Footer sticky back-to-top */
     .to-top{position:fixed;right:16px;bottom:16px;background:#000;color:#fff;border:0;border-radius:999px;padding:12px 14px;font-size:13px;box-shadow:var(--shadow);cursor:pointer}
 
     /* Mobile tweaks */
@@ -204,8 +196,9 @@
   </header>
 
   <main class="container">
+    <p class="notice">여름의 마스코트 냥이 이름은 <strong>파도</strong>입니다 🐾 사람을 좋아하지만 잘 물기도 해요. 서로의 안전을 위해 <strong>눈으로만</strong> 예뻐해주세요 😽</p>
 
-    <div class="search" style="margin:12px 0 4px">
+    <div class="search">
       <input id="q" type="search" placeholder="메뉴 검색 (예: 우동, 라임, 보드카)…" aria-label="메뉴 검색" />
       <span class="icon">🔎</span>
     </div>
@@ -287,9 +280,9 @@
         <li class="item" data-k="하이볼"> <span class="i-name">하이볼</span> <span class="i-price">7,900</span></li>
         <li class="item" data-k="데킬라 보드카 샷"> <span class="i-name">데킬라/보드카 샷</span> <span class="i-price">3,900</span></li>
         <li class="item" data-k="위스키 샷"> <span class="i-name">위스키 샷</span> <span class="i-price">5,500</span></li>
-        <li class="item" data-k="발디비에소 까쇼 레드 와인"> <span class="i-name">발디비에소 까쇼(Red)</span> <span class="i-price">45,000</span></li>
-        <li class="item" data-k="모스카토 다스티 화이트 와인"> <span class="i-name">모스카토 다스티(White)</span> <span class="i-price">45,000</span></li>
-        <li class="item" data-k="하우스 와인"> <span class="i-name">하우스 와인(Red)</span> <span class="i-price">5,900</span></li>
+        <li class="item" data-k="발디비에소 까쇼 레드 와인"> <span class="i-name">발디비에소 까쇼(레드와인)</span> <span class="i-price">45,000</span></li>
+        <li class="item" data-k="모스카토 다스티 화이트 와인"> <span class="i-name">모스카토 다스티(화이트와인)</span> <span class="i-price">45,000</span></li>
+        <li class="item" data-k="하우스 와인"> <span class="i-name">하우스 와인</span> <span class="i-price">5,900</span></li>
         <li class="item" data-k="상그리아"> <span class="i-name">상그리아</span> <span class="i-price">6,900</span></li>
       </ul>
     </section>
@@ -298,53 +291,439 @@
     <section id="cocktail" class="menu" data-section>
       <h2>🍸 Cocktail</h2>
 
+      <!-- ✅ 정렬 버튼 (A 방식) -->
+      <div class="sortbar" aria-label="칵테일 정렬">
+        <button class="sortbtn active" data-sort="default">기본</button>
+        <button class="sortbtn" data-sort="sweet-desc">당도 높은 순</button>
+        <button class="sortbtn" data-sort="sweet-asc">당도 낮은 순</button>
+        <button class="sortbtn" data-sort="abv-desc">도수 높은 순</button>
+        <button class="sortbtn" data-sort="abv-asc">도수 낮은 순</button>
+      </div>
+
       <div class="subtitle">On the Rock</div>
-      <div class="grid" role="list" aria-label="온더락 칵테일">
-        <div class="item" data-k="보드카 오렌지"><span class="i-name">보드카 오렌지</span><span class="i-price">6,900</span></div>
-        <div class="item" data-k="보드카 토닉"><span class="i-name">보드카 토닉</span><span class="i-price">6,900</span></div>
-        <div class="item" data-k="진 토닉"><span class="i-name">진 토닉</span><span class="i-price">6,900</span></div>
-        <div class="item" data-k="보드카 크랜배리"><span class="i-name">보드카 크랜배리</span><span class="i-price">6,900</span></div>
-        <div class="item" data-k="보드카 라임"><span class="i-name">보드카 라임</span><span class="i-price">7,400</span></div>
-        <div class="item" data-k="봄베이 진 토닉"><span class="i-name">봄베이 진 토닉</span><span class="i-price">7,900</span></div>
-        <div class="item" data-k="베일리스 밀크"><span class="i-name">베일리스 밀크</span><span class="i-price">7,400</span></div>
-        <div class="item" data-k="깔루아 밀크"><span class="i-name">깔루아 밀크</span><span class="i-price">7,400</span></div>
-        <div class="item" data-k="말리부 오렌지"><span class="i-name">말리부 오렌지</span><span class="i-price">7,400</span></div>
-        <div class="item" data-k="말리부 밀크"><span class="i-name">말리부 밀크</span><span class="i-price">7,400</span></div>
-        <div class="item" data-k="잭콕"><span class="i-name">잭콕</span><span class="i-price">7,400</span></div>
-        <div class="item" data-k="블랙 러시안"><span class="i-name">블랙 러시안</span><span class="i-price">7,400</span></div>
-        <div class="item" data-k="데빌스 얼루어"><span class="i-name">데빌스 얼루어</span><span class="i-price">7,900</span></div>
-        <div class="item" data-k="코스모 폴리탄"><span class="i-name">코스모 폴리탄</span><span class="i-price">7,400</span></div>
-        <div class="item" data-k="쿠바 리브레"><span class="i-name">쿠바 리브레</span><span class="i-price">7,400</span></div>
-        <div class="item" data-k="카미카제"><span class="i-name">카미카제</span><span class="i-price">7,400</span></div>
-        <div class="item" data-k="화이트 러시안"><span class="i-name">화이트 러시안</span><span class="i-price">8,400</span></div>
-        <div class="item" data-k="와이낫"><span class="i-name">와이낫</span><span class="i-price">7,900</span></div>
-        <div class="item" data-k="그랑블루"><span class="i-name">그랑블루</span><span class="i-price">7,900</span></div>
+      <div class="grid cocktail-grid" id="cocktailRock" role="list" aria-label="온더락 칵테일">
+        <div class="item" data-k="보드카 오렌지" data-sweet="3" data-abv="1">
+          <div class="left">
+            <span class="i-name">보드카 오렌지</span>
+            <div class="meta">
+              <span class="tag"><span>당도</span> <span class="stars" data-stars="3"></span> <span>3/5</span></span>
+              <span class="tag"><span>도수</span> <span class="stars" data-stars="1"></span> <span>1/5</span></span>
+            </div>
+          </div>
+          <span class="i-price">6,900</span>
+        </div>
+
+        <div class="item" data-k="보드카 토닉" data-sweet="3" data-abv="1">
+          <div class="left">
+            <span class="i-name">보드카 토닉</span>
+            <div class="meta">
+              <span class="tag"><span>당도</span> <span class="stars" data-stars="3"></span> <span>3/5</span></span>
+              <span class="tag"><span>도수</span> <span class="stars" data-stars="1"></span> <span>1/5</span></span>
+            </div>
+          </div>
+          <span class="i-price">6,900</span>
+        </div>
+
+        <div class="item" data-k="진 토닉" data-sweet="3" data-abv="1">
+          <div class="left">
+            <span class="i-name">진 토닉</span>
+            <div class="meta">
+              <span class="tag"><span>당도</span> <span class="stars" data-stars="3"></span> <span>3/5</span></span>
+              <span class="tag"><span>도수</span> <span class="stars" data-stars="1"></span> <span>1/5</span></span>
+            </div>
+          </div>
+          <span class="i-price">6,900</span>
+        </div>
+
+        <div class="item" data-k="보드카 크랜배리" data-sweet="3" data-abv="1">
+          <div class="left">
+            <span class="i-name">보드카 크랜배리</span>
+            <div class="meta">
+              <span class="tag"><span>당도</span> <span class="stars" data-stars="3"></span> <span>3/5</span></span>
+              <span class="tag"><span>도수</span> <span class="stars" data-stars="1"></span> <span>1/5</span></span>
+            </div>
+          </div>
+          <span class="i-price">6,900</span>
+        </div>
+
+        <div class="item" data-k="보드카 라임" data-sweet="3" data-abv="1">
+          <div class="left">
+            <span class="i-name">보드카 라임</span>
+            <div class="meta">
+              <span class="tag"><span>당도</span> <span class="stars" data-stars="3"></span> <span>3/5</span></span>
+              <span class="tag"><span>도수</span> <span class="stars" data-stars="1"></span> <span>1/5</span></span>
+            </div>
+          </div>
+          <span class="i-price">7,400</span>
+        </div>
+
+        <div class="item" data-k="봄베이 진 토닉" data-sweet="3" data-abv="1">
+          <div class="left">
+            <span class="i-name">봄베이 진 토닉</span>
+            <div class="meta">
+              <span class="tag"><span>당도</span> <span class="stars" data-stars="3"></span> <span>3/5</span></span>
+              <span class="tag"><span>도수</span> <span class="stars" data-stars="1"></span> <span>1/5</span></span>
+            </div>
+          </div>
+          <span class="i-price">7,900</span>
+        </div>
+
+        <div class="item" data-k="베일리스 밀크" data-sweet="3" data-abv="1">
+          <div class="left">
+            <span class="i-name">베일리스 밀크</span>
+            <div class="meta">
+              <span class="tag"><span>당도</span> <span class="stars" data-stars="3"></span> <span>3/5</span></span>
+              <span class="tag"><span>도수</span> <span class="stars" data-stars="1"></span> <span>1/5</span></span>
+            </div>
+          </div>
+          <span class="i-price">7,400</span>
+        </div>
+
+        <div class="item" data-k="깔루아 밀크" data-sweet="3" data-abv="1">
+          <div class="left">
+            <span class="i-name">깔루아 밀크</span>
+            <div class="meta">
+              <span class="tag"><span>당도</span> <span class="stars" data-stars="3"></span> <span>3/5</span></span>
+              <span class="tag"><span>도수</span> <span class="stars" data-stars="1"></span> <span>1/5</span></span>
+            </div>
+          </div>
+          <span class="i-price">7,400</span>
+        </div>
+
+        <div class="item" data-k="말리부 오렌지" data-sweet="3" data-abv="1">
+          <div class="left">
+            <span class="i-name">말리부 오렌지</span>
+            <div class="meta">
+              <span class="tag"><span>당도</span> <span class="stars" data-stars="3"></span> <span>3/5</span></span>
+              <span class="tag"><span>도수</span> <span class="stars" data-stars="1"></span> <span>1/5</span></span>
+            </div>
+          </div>
+          <span class="i-price">7,400</span>
+        </div>
+
+        <div class="item" data-k="말리부 밀크" data-sweet="3" data-abv="1">
+          <div class="left">
+            <span class="i-name">말리부 밀크</span>
+            <div class="meta">
+              <span class="tag"><span>당도</span> <span class="stars" data-stars="3"></span> <span>3/5</span></span>
+              <span class="tag"><span>도수</span> <span class="stars" data-stars="1"></span> <span>1/5</span></span>
+            </div>
+          </div>
+          <span class="i-price">7,400</span>
+        </div>
+
+        <div class="item" data-k="잭콕" data-sweet="3" data-abv="2">
+          <div class="left">
+            <span class="i-name">잭콕</span>
+            <div class="meta">
+              <span class="tag"><span>당도</span> <span class="stars" data-stars="3"></span> <span>3/5</span></span>
+              <span class="tag"><span>도수</span> <span class="stars" data-stars="2"></span> <span>2/5</span></span>
+            </div>
+          </div>
+          <span class="i-price">7,400</span>
+        </div>
+
+        <div class="item" data-k="블랙 러시안" data-sweet="3" data-abv="4">
+          <div class="left">
+            <span class="i-name">블랙 러시안</span>
+            <div class="meta">
+              <span class="tag"><span>당도</span> <span class="stars" data-stars="3"></span> <span>3/5</span></span>
+              <span class="tag"><span>도수</span> <span class="stars" data-stars="4"></span> <span>4/5</span></span>
+            </div>
+          </div>
+          <span class="i-price">7,400</span>
+        </div>
+
+        <div class="item" data-k="데빌스 얼루어" data-sweet="4" data-abv="5">
+          <div class="left">
+            <span class="i-name">데빌스 얼루어</span>
+            <div class="meta">
+              <span class="tag"><span>당도</span> <span class="stars" data-stars="4"></span> <span>4/5</span></span>
+              <span class="tag"><span>도수</span> <span class="stars" data-stars="5"></span> <span>5/5</span></span>
+            </div>
+          </div>
+          <span class="i-price">7,900</span>
+        </div>
+
+        <div class="item" data-k="코스모 폴리탄" data-sweet="3" data-abv="4">
+          <div class="left">
+            <span class="i-name">코스모 폴리탄</span>
+            <div class="meta">
+              <span class="tag"><span>당도</span> <span class="stars" data-stars="3"></span> <span>3/5</span></span>
+              <span class="tag"><span>도수</span> <span class="stars" data-stars="4"></span> <span>4/5</span></span>
+            </div>
+          </div>
+          <span class="i-price">7,400</span>
+        </div>
+
+        <div class="item" data-k="쿠바 리브레" data-sweet="3" data-abv="2">
+          <div class="left">
+            <span class="i-name">쿠바 리브레</span>
+            <div class="meta">
+              <span class="tag"><span>당도</span> <span class="stars" data-stars="3"></span> <span>3/5</span></span>
+              <span class="tag"><span>도수</span> <span class="stars" data-stars="2"></span> <span>2/5</span></span>
+            </div>
+          </div>
+          <span class="i-price">7,400</span>
+        </div>
+
+        <div class="item" data-k="카미카제" data-sweet="3" data-abv="5">
+          <div class="left">
+            <span class="i-name">카미카제</span>
+            <div class="meta">
+              <span class="tag"><span>당도</span> <span class="stars" data-stars="3"></span> <span>3/5</span></span>
+              <span class="tag"><span>도수</span> <span class="stars" data-stars="5"></span> <span>5/5</span></span>
+            </div>
+          </div>
+          <span class="i-price">7,400</span>
+        </div>
+
+        <div class="item" data-k="화이트 러시안" data-sweet="3" data-abv="3">
+          <div class="left">
+            <span class="i-name">화이트 러시안</span>
+            <div class="meta">
+              <span class="tag"><span>당도</span> <span class="stars" data-stars="3"></span> <span>3/5</span></span>
+              <span class="tag"><span>도수</span> <span class="stars" data-stars="3"></span> <span>3/5</span></span>
+            </div>
+          </div>
+          <span class="i-price">8,400</span>
+        </div>
+
+        <div class="item" data-k="와이낫" data-sweet="4" data-abv="2">
+          <div class="left">
+            <span class="i-name">와이낫</span>
+            <div class="meta">
+              <span class="tag"><span>당도</span> <span class="stars" data-stars="4"></span> <span>4/5</span></span>
+              <span class="tag"><span>도수</span> <span class="stars" data-stars="2"></span> <span>2/5</span></span>
+            </div>
+          </div>
+          <span class="i-price">7,900</span>
+        </div>
+
+        <div class="item" data-k="그랑블루" data-sweet="4" data-abv="2">
+          <div class="left">
+            <span class="i-name">그랑블루</span>
+            <div class="meta">
+              <span class="tag"><span>당도</span> <span class="stars" data-stars="4"></span> <span>4/5</span></span>
+              <span class="tag"><span>도수</span> <span class="stars" data-stars="2"></span> <span>2/5</span></span>
+            </div>
+          </div>
+          <span class="i-price">7,900</span>
+        </div>
       </div>
 
       <div class="subtitle">Tumbler & Mix</div>
-      <div class="grid" role="list" aria-label="텀블러 & 믹스 칵테일">
-        <div class="item" data-k="데킬라 선 라이즈"><span class="i-name">데킬라 선 라이즈</span><span class="i-price">8,400</span></div>
-        <div class="item" data-k="미도리 사워"><span class="i-name">미도리 사워</span><span class="i-price">8,400</span></div>
-        <div class="item" data-k="피치 크러쉬"><span class="i-name">피치 크러쉬</span><span class="i-price">8,400</span></div>
-        <div class="item" data-k="메로나"><span class="i-name">메로나</span><span class="i-price">8,400</span></div>
-        <div class="item" data-k="피치 코코"><span class="i-name">피치 코코</span><span class="i-price">8,400</span></div>
-        <div class="item" data-k="바이올렛"><span class="i-name">바이올렛</span><span class="i-price">8,900</span></div>
-        <div class="item" data-k="러브액츄얼리"><span class="i-name">러브액츄얼리</span><span class="i-price">8,400</span></div>
-        <div class="item" data-k="말리부 크랜 파인"><span class="i-name">말리부 크랜 파인</span><span class="i-price">8,400</span></div>
-        <div class="item" data-k="섹스 온 더 비치"><span class="i-name">섹스 온 더 비치</span><span class="i-price">8,900</span></div>
-        <div class="item" data-k="Summer"><span class="i-name">Summer</span><span class="i-price">8,900</span></div>
-        <div class="item" data-k="체리럼 피즈"><span class="i-name">체리럼 피즈</span><span class="i-price">8,400</span></div>
-        <div class="item" data-k="싱가폴 슬링"><span class="i-name">싱가폴 슬링</span><span class="i-price">8,900</span></div>
-        <div class="item" data-k="수리베리체리베리"><span class="i-name">수리베리체리베리</span><span class="i-price">8,400</span></div>
-        <div class="item" data-k="블루 하와이"><span class="i-name">블루 하와이</span><span class="i-price">8,900</span></div>
-        <div class="item" data-k="린치버그 레몬에이드"><span class="i-name">린치버그 레몬에이드</span><span class="i-price">8,900</span></div>
-        <div class="item" data-k="도쿄 아이스티"><span class="i-name">도쿄 아이스티</span><span class="i-price">9,900</span></div>
-        <div class="item" data-k="준벅"><span class="i-name">준벅</span><span class="i-price">9,400</span></div>
-        <div class="item" data-k="롱 아일랜드 아이스티"><span class="i-name">롱 아일랜드 아이스티</span><span class="i-price">9,400</span></div>
-        <div class="item" data-k="롱비치 아이스티"><span class="i-name">롱비치 아이스티</span><span class="i-price">9,400</span></div>
+      <div class="grid cocktail-grid" id="cocktailMix" role="list" aria-label="텀블러 & 믹스 칵테일">
+        <div class="item" data-k="데킬라 선 라이즈" data-sweet="3" data-abv="3">
+          <div class="left">
+            <span class="i-name">데킬라 선 라이즈</span>
+            <div class="meta">
+              <span class="tag"><span>당도</span> <span class="stars" data-stars="3"></span> <span>3/5</span></span>
+              <span class="tag"><span>도수</span> <span class="stars" data-stars="3"></span> <span>3/5</span></span>
+            </div>
+          </div>
+          <span class="i-price">8,400</span>
+        </div>
+
+        <div class="item" data-k="미도리 사워" data-sweet="4" data-abv="1">
+          <div class="left">
+            <span class="i-name">미도리 사워</span>
+            <div class="meta">
+              <span class="tag"><span>당도</span> <span class="stars" data-stars="4"></span> <span>4/5</span></span>
+              <span class="tag"><span>도수</span> <span class="stars" data-stars="1"></span> <span>1/5</span></span>
+            </div>
+          </div>
+          <span class="i-price">8,400</span>
+        </div>
+
+        <div class="item" data-k="피치 크러쉬" data-sweet="4" data-abv="2">
+          <div class="left">
+            <span class="i-name">피치 크러쉬</span>
+            <div class="meta">
+              <span class="tag"><span>당도</span> <span class="stars" data-stars="4"></span> <span>4/5</span></span>
+              <span class="tag"><span>도수</span> <span class="stars" data-stars="2"></span> <span>2/5</span></span>
+            </div>
+          </div>
+          <span class="i-price">8,400</span>
+        </div>
+
+        <div class="item" data-k="메로나" data-sweet="3" data-abv="2">
+          <div class="left">
+            <span class="i-name">메로나</span>
+            <div class="meta">
+              <span class="tag"><span>당도</span> <span class="stars" data-stars="3"></span> <span>3/5</span></span>
+              <span class="tag"><span>도수</span> <span class="stars" data-stars="2"></span> <span>2/5</span></span>
+            </div>
+          </div>
+          <span class="i-price">8,400</span>
+        </div>
+
+        <div class="item" data-k="피치 코코" data-sweet="4" data-abv="2">
+          <div class="left">
+            <span class="i-name">피치 코코</span>
+            <div class="meta">
+              <span class="tag"><span>당도</span> <span class="stars" data-stars="4"></span> <span>4/5</span></span>
+              <span class="tag"><span>도수</span> <span class="stars" data-stars="2"></span> <span>2/5</span></span>
+            </div>
+          </div>
+          <span class="i-price">8,400</span>
+        </div>
+
+        <div class="item" data-k="바이올렛" data-sweet="4" data-abv="2">
+          <div class="left">
+            <span class="i-name">바이올렛</span>
+            <div class="meta">
+              <span class="tag"><span>당도</span> <span class="stars" data-stars="4"></span> <span>4/5</span></span>
+              <span class="tag"><span>도수</span> <span class="stars" data-stars="2"></span> <span>2/5</span></span>
+            </div>
+          </div>
+          <span class="i-price">8,900</span>
+        </div>
+
+        <div class="item" data-k="러브액츄얼리" data-sweet="4" data-abv="1">
+          <div class="left">
+            <span class="i-name">러브액츄얼리</span>
+            <div class="meta">
+              <span class="tag"><span>당도</span> <span class="stars" data-stars="4"></span> <span>4/5</span></span>
+              <span class="tag"><span>도수</span> <span class="stars" data-stars="1"></span> <span>1/5</span></span>
+            </div>
+          </div>
+          <span class="i-price">8,400</span>
+        </div>
+
+        <div class="item" data-k="말리부 크랜 파인" data-sweet="4" data-abv="1">
+          <div class="left">
+            <span class="i-name">말리부 크랜 파인</span>
+            <div class="meta">
+              <span class="tag"><span>당도</span> <span class="stars" data-stars="4"></span> <span>4/5</span></span>
+              <span class="tag"><span>도수</span> <span class="stars" data-stars="1"></span> <span>1/5</span></span>
+            </div>
+          </div>
+          <span class="i-price">8,400</span>
+        </div>
+
+        <div class="item" data-k="섹스 온 더 비치" data-sweet="3" data-abv="4">
+          <div class="left">
+            <span class="i-name">섹스 온 더 비치</span>
+            <div class="meta">
+              <span class="tag"><span>당도</span> <span class="stars" data-stars="3"></span> <span>3/5</span></span>
+              <span class="tag"><span>도수</span> <span class="stars" data-stars="4"></span> <span>4/5</span></span>
+            </div>
+          </div>
+          <span class="i-price">8,900</span>
+        </div>
+
+        <div class="item" data-k="Summer" data-sweet="4" data-abv="3">
+          <div class="left">
+            <span class="i-name">Summer</span>
+            <div class="meta">
+              <span class="tag"><span>당도</span> <span class="stars" data-stars="4"></span> <span>4/5</span></span>
+              <span class="tag"><span>도수</span> <span class="stars" data-stars="3"></span> <span>3/5</span></span>
+            </div>
+          </div>
+          <span class="i-price">8,900</span>
+        </div>
+
+        <div class="item" data-k="체리럼 피즈" data-sweet="4" data-abv="3">
+          <div class="left">
+            <span class="i-name">체리럼 피즈</span>
+            <div class="meta">
+              <span class="tag"><span>당도</span> <span class="stars" data-stars="4"></span> <span>4/5</span></span>
+              <span class="tag"><span>도수</span> <span class="stars" data-stars="3"></span> <span>3/5</span></span>
+            </div>
+          </div>
+          <span class="i-price">8,400</span>
+        </div>
+
+        <div class="item" data-k="싱가폴 슬링" data-sweet="3" data-abv="2">
+          <div class="left">
+            <span class="i-name">싱가폴 슬링</span>
+            <div class="meta">
+              <span class="tag"><span>당도</span> <span class="stars" data-stars="3"></span> <span>3/5</span></span>
+              <span class="tag"><span>도수</span> <span class="stars" data-stars="2"></span> <span>2/5</span></span>
+            </div>
+          </div>
+          <span class="i-price">8,900</span>
+        </div>
+
+        <div class="item" data-k="수리베리체리베리" data-sweet="5" data-abv="2">
+          <div class="left">
+            <span class="i-name">수리베리체리베리</span>
+            <div class="meta">
+              <span class="tag"><span>당도</span> <span class="stars" data-stars="5"></span> <span>5/5</span></span>
+              <span class="tag"><span>도수</span> <span class="stars" data-stars="2"></span> <span>2/5</span></span>
+            </div>
+          </div>
+          <span class="i-price">8,400</span>
+        </div>
+
+        <div class="item" data-k="블루 하와이" data-sweet="3" data-abv="3">
+          <div class="left">
+            <span class="i-name">블루 하와이</span>
+            <div class="meta">
+              <span class="tag"><span>당도</span> <span class="stars" data-stars="3"></span> <span>3/5</span></span>
+              <span class="tag"><span>도수</span> <span class="stars" data-stars="3"></span> <span>3/5</span></span>
+            </div>
+          </div>
+          <span class="i-price">8,900</span>
+        </div>
+
+        <div class="item" data-k="린치버그 레몬에이드" data-sweet="3" data-abv="3">
+          <div class="left">
+            <span class="i-name">린치버그 레몬에이드</span>
+            <div class="meta">
+              <span class="tag"><span>당도</span> <span class="stars" data-stars="3"></span> <span>3/5</span></span>
+              <span class="tag"><span>도수</span> <span class="stars" data-stars="3"></span> <span>3/5</span></span>
+            </div>
+          </div>
+          <span class="i-price">8,900</span>
+        </div>
+
+        <div class="item" data-k="도쿄 아이스티" data-sweet="4" data-abv="5">
+          <div class="left">
+            <span class="i-name">도쿄 아이스티</span>
+            <div class="meta">
+              <span class="tag"><span>당도</span> <span class="stars" data-stars="4"></span> <span>4/5</span></span>
+              <span class="tag"><span>도수</span> <span class="stars" data-stars="5"></span> <span>5/5</span></span>
+            </div>
+          </div>
+          <span class="i-price">9,900</span>
+        </div>
+
+        <div class="item" data-k="준벅" data-sweet="4" data-abv="3">
+          <div class="left">
+            <span class="i-name">준벅</span>
+            <div class="meta">
+              <span class="tag"><span>당도</span> <span class="stars" data-stars="4"></span> <span>4/5</span></span>
+              <span class="tag"><span>도수</span> <span class="stars" data-stars="3"></span> <span>3/5</span></span>
+            </div>
+          </div>
+          <span class="i-price">9,400</span>
+        </div>
+
+        <div class="item" data-k="롱 아일랜드 아이스티" data-sweet="3" data-abv="5">
+          <div class="left">
+            <span class="i-name">롱 아일랜드 아이스티</span>
+            <div class="meta">
+              <span class="tag"><span>당도</span> <span class="stars" data-stars="3"></span> <span>3/5</span></span>
+              <span class="tag"><span>도수</span> <span class="stars" data-stars="5"></span> <span>5/5</span></span>
+            </div>
+          </div>
+          <span class="i-price">9,400</span>
+        </div>
+
+        <div class="item" data-k="롱비치 아이스티" data-sweet="3" data-abv="5">
+          <div class="left">
+            <span class="i-name">롱비치 아이스티</span>
+            <div class="meta">
+              <span class="tag"><span>당도</span> <span class="stars" data-stars="3"></span> <span>3/5</span></span>
+              <span class="tag"><span>도수</span> <span class="stars" data-stars="5"></span> <span>5/5</span></span>
+            </div>
+          </div>
+          <span class="i-price">9,400</span>
+        </div>
       </div>
     </section>
-
   </main>
 
   <button class="to-top" aria-label="맨 위로" title="맨 위로">▲ 맨 위로</button>
@@ -354,7 +733,7 @@
     const cover = document.getElementById('cover');
     document.getElementById('goMenu')?.addEventListener('click', () => {
       cover.classList.add('hidden');
-      window.scrollTo({ top: 0, behavior: 'auto' });
+      window.scrollTo({ top: 0, behavior: 'instant' });
     });
 
     // Smooth scroll for section chips
@@ -370,24 +749,35 @@
           window.scrollTo({top:y,behavior:'smooth'});
         }
       })
-    });
+    })
 
     // Back to top
     document.querySelector('.to-top').addEventListener('click',()=>{
       window.scrollTo({top:0,behavior:'smooth'})
-    });
+    })
 
-    // Search filter
+    // Stars render (●●●○○ style)
+    function renderStars(el){
+      const n = Math.max(0, Math.min(5, parseInt(el.getAttribute('data-stars')||'0',10)));
+      let html = '';
+      for(let i=1;i<=5;i++){
+        html += i<=n ? '<span class="on">●</span>' : '<span class="off">●</span>';
+      }
+      el.innerHTML = html;
+    }
+    document.querySelectorAll('.stars').forEach(renderStars);
+
+    // Simple search filter (matches data-k, name text)
     const q=document.getElementById('q');
     const sections=[...document.querySelectorAll('[data-section]')];
     const index=sections.flatMap(sec=>[...sec.querySelectorAll('.item')]);
 
-    const normalizeText=s=>(s||'').normalize('NFKD').toLowerCase();
+    const normalize=s=>s.normalize('NFKD').toLowerCase();
     let deb;
     q?.addEventListener('input',()=>{
       clearTimeout(deb);
       deb=setTimeout(()=>{
-        const term=normalizeText(q.value.trim());
+        const term=normalize(q.value.trim());
         if(!term){
           index.forEach(el=>el.style.display='');
           sections.forEach(sec=>sec.style.display='');
@@ -395,7 +785,7 @@
         }
         index.forEach(el=>{
           const hay=(el.getAttribute('data-k')||'') + ' ' + el.textContent;
-          el.style.display = normalizeText(hay).includes(term) ? '' : 'none';
+          el.style.display = normalize(hay).includes(term) ? '' : 'none';
         });
         sections.forEach(sec=>{
           const any=[...sec.querySelectorAll('.item')].some(x=>x.style.display!=='none');
@@ -404,92 +794,62 @@
       },120);
     });
 
-    // =========================
-    // ✅ 칵테일 당도/도수 별 표시 (항상, 이름 완전일치 버전)
-    // =========================
-    const keyify = (s) => (s||'')
-      .normalize('NFKD')
-      .toLowerCase()
-      .replace(/\s+/g,'')     // 공백 제거
-      .replace(/[()]/g,'');   // 괄호만 제거(필요 최소)
+    // ✅ Cocktails sorting (A 방식: 버튼)
+    const sortBtns = [...document.querySelectorAll('.sortbtn')];
+    const grids = [document.getElementById('cocktailRock'), document.getElementById('cocktailMix')].filter(Boolean);
 
-    const stars = (n) => '★★★★★'.slice(0,n) + '☆☆☆☆☆'.slice(0,5-n);
+    // 기본 순서 저장
+    const originalOrder = new Map();
+    grids.forEach(grid=>{
+      originalOrder.set(grid, [...grid.children]);
+    });
 
-    // ✅ 최신 점수표(네가 준 이름 그대로)
-    const cocktailScore = (() => {
-      const raw = [
-        ['보드카 오렌지',3,1],
-        ['보드카 토닉',3,1],
-        ['진 토닉',3,1],
-        ['보드카 크랜배리',3,1],
-        ['보드카 라임',3,1],
-        ['봄베이 진 토닉',3,1],
-        ['베일리스 밀크',4,1],
-        ['깔루아 밀크',4,1],
-        ['말리부 오렌지',3,1],
-        ['말리부 밀크',4,1],
-        ['잭콕',3,2],
-        ['블랙 러시안',3,4],
-        ['데빌스 얼루어',4,5],
-        ['코스모 폴리탄',3,4],
-        ['쿠바 리브레',3,2],
-        ['카미카제',3,5],            // 네 목록에 공백 있었지만, 여기선 이름만 저장
-        ['화이트 러시안',3,3],
-        ['와이낫',4,2],
-        ['그랑블루',4,2],
-        ['데킬라 선 라이즈',3,3],
-        ['미도리 사워',4,1],
-        ['피치 크러쉬',4,2],
-        ['메로나',3,2],
-        ['피치 코코',4,2],
-        ['바이올렛',4,2],
-        ['러브액츄얼리',4,1],
-        ['말리부 크랜 파인',4,1],
-        ['섹스 온 더 비치',3,4],
-        ['Summer',4,3],
-        ['체리럼 피즈',4,3],
-        ['싱가폴 슬링',3,2],
-        ['수리베리체리베리',5,2],
-        ['블루 하와이',3,3],
-        ['린치버그 레몬에이드',3,3],
-        ['도쿄 아이스티',4,5],
-        ['준벅',4,3],
-        ['롱 아일랜드 아이스티',3,5],
-        ['롱비치 아이스티',3,5],
-      ];
-      const obj = {};
-      raw.forEach(([name,sweet,abv])=>{
-        obj[keyify(name)] = {sweet, abv};
+    function sortGrid(grid, mode){
+      if(mode === 'default'){
+        const original = originalOrder.get(grid) || [];
+        original.forEach(node=>grid.appendChild(node));
+        return;
+      }
+      const items = [...grid.children];
+      const getNum = (el, key) => parseInt(el.getAttribute(key) || '0', 10);
+
+      items.sort((a,b)=>{
+        if(mode === 'sweet-desc') return getNum(b,'data-sweet') - getNum(a,'data-sweet');
+        if(mode === 'sweet-asc')  return getNum(a,'data-sweet') - getNum(b,'data-sweet');
+        if(mode === 'abv-desc')   return getNum(b,'data-abv') - getNum(a,'data-abv');
+        if(mode === 'abv-asc')    return getNum(a,'data-abv') - getNum(b,'data-abv');
+        return 0;
       });
-      return obj;
-    })();
 
-    // ✅ 칵테일 카드(.i-name) 이름으로만 매칭
-    const cocktailCards = document.querySelectorAll('#cocktail .grid .item');
-    cocktailCards.forEach(card=>{
-      const nameEl = card.querySelector('.i-name');
-      if(!nameEl) return;
-      if(card.querySelector('.i-meta')) return;
+      // 동점일 때는 원래 순서 유지 (안정 정렬 느낌)
+      const original = originalOrder.get(grid) || [];
+      const idx = new Map(original.map((node,i)=>[node,i]));
+      items.sort((a,b)=>{
+        const primary = (()=>{
+          const getNum = (el, key) => parseInt(el.getAttribute(key) || '0', 10);
+          if(mode === 'sweet-desc') return getNum(b,'data-sweet') - getNum(a,'data-sweet');
+          if(mode === 'sweet-asc')  return getNum(a,'data-sweet') - getNum(b,'data-sweet');
+          if(mode === 'abv-desc')   return getNum(b,'data-abv') - getNum(a,'data-abv');
+          if(mode === 'abv-asc')    return getNum(a,'data-abv') - getNum(b,'data-abv');
+          return 0;
+        })();
+        if(primary !== 0) return primary;
+        return (idx.get(a)??0) - (idx.get(b)??0);
+      });
 
-      const nameKey = keyify((nameEl.textContent||'').trim());
-      // "카미카제 "처럼 뒤 공백이 있더라도 keyify가 공백 제거해서 안전
-      const score = cocktailScore[nameKey];
-      if(!score) return;
+      items.forEach(node=>grid.appendChild(node));
+    }
 
-      const meta = document.createElement('div');
-      meta.className = 'i-meta';
-      meta.innerHTML = `
-        <span class="tag" title="당도 ${score.sweet}/5">
-          <span class="label">당도</span>
-          <span class="stars" aria-label="당도 ${score.sweet}점">${stars(score.sweet)}</span>
-        </span>
-        <span class="tag" title="도수 ${score.abv}/5">
-          <span class="label">도수</span>
-          <span class="stars" aria-label="도수 ${score.abv}점">${stars(score.abv)}</span>
-        </span>
-      `;
+    function applySort(mode){
+      grids.forEach(g=>sortGrid(g, mode));
+    }
 
-      nameEl.insertAdjacentElement('afterend', meta);
+    sortBtns.forEach(btn=>{
+      btn.addEventListener('click',()=>{
+        sortBtns.forEach(b=>b.classList.remove('active'));
+        btn.classList.add('active');
+        applySort(btn.getAttribute('data-sort'));
+      });
     });
   </script>
 </body>
