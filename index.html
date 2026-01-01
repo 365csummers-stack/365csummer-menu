@@ -70,8 +70,11 @@
     .ig{font-size:13px;color:var(--ink-dim)}
 
     /* Container */
-    main.container{max-width:var(--maxw);margin:0 auto;padding:18px 18px 80px}
-    .notice{background:var(--chip);border:1px solid var(--chip-border);padding:14px 18px;border-radius:12px;color:var(--brand);font-size:14px;line-height:1.6}
+    main.container{
+      max-width:var(--maxw);
+      margin:0 auto;
+      padding:18px 20px 80px; /* ✅ 모바일에서도 양옆 여백 */
+    }
 
     /* Search */
     .search{position:relative;margin:12px 0 4px}
@@ -156,7 +159,6 @@
       h1.title{font-size:clamp(24px,8.5vw,36px)}
       .ig{font-size:12px}
       .grid{grid-template-columns:1fr}
-      main.container{padding-left:20px;padding-right:20px;}
     }
   </style>
 </head>
@@ -177,6 +179,9 @@
       <div class="ig">인스타그램: <a href="https://www.instagram.com/365csummer" target="_blank" rel="noopener">@365csummer</a></div>
     </div>
   </header>
+
+  <!-- ✅ 컨테이너(양옆 여백 적용되는 핵심) -->
+  <main class="container">
 
     <div class="search">
       <input id="q" type="search" placeholder="메뉴 검색 (예: 우동, 라임, 보드카)…" aria-label="메뉴 검색" />
@@ -267,7 +272,7 @@
       </ul>
     </section>
 
-    <!-- Cocktail (✅ 통합 리스트 + 통합 정렬) -->
+    <!-- Cocktail (통합 리스트 + 통합 정렬) -->
     <section id="cocktail" class="menu" data-section>
       <h2>🍸 Cocktail</h2>
 
@@ -280,8 +285,6 @@
       </div>
 
       <div class="grid cocktail-grid" id="cocktailList" role="list" aria-label="칵테일">
-        <!-- On the Rock + Tumbler & Mix 를 하나로 합침 -->
-
         <div class="item" data-k="보드카 오렌지" data-sweet="3" data-abv="1">
           <div class="left">
             <span class="i-name">보드카 오렌지</span>
@@ -348,7 +351,6 @@
           <span class="i-price">7,900</span>
         </div>
 
-        <!-- ✅ 당도 조정(예시): 베일리스/깔루아를 3으로, 말리부류를 3으로 되돌림 -->
         <div class="item" data-k="베일리스 밀크" data-sweet="3" data-abv="1">
           <div class="left">
             <span class="i-name">베일리스 밀크</span>
@@ -492,7 +494,6 @@
           <span class="i-price">7,900</span>
         </div>
 
-        <!-- Mix 파트도 이어서 그대로 -->
         <div class="item" data-k="데킬라 선 라이즈" data-sweet="3" data-abv="3">
           <div class="left">
             <span class="i-name">데킬라 선 라이즈</span>
@@ -703,6 +704,7 @@
         </div>
       </div>
     </section>
+
   </main>
 
   <button class="to-top" aria-label="맨 위로" title="맨 위로">▲ 맨 위로</button>
