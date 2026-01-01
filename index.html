@@ -5,9 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>36.5도 여름 동쪽점 메뉴</title>
   <meta name="description" content="36.5도 여름 동쪽점 · 푸드 · 주류 · 칵테일 · 음료 메뉴" />
+
   <style>
     :root{
-      --bg:#f0f8ff;
+      /* ✅ 여기서 배경 이미지(민트) 파일명만 유지하면 됨 */
+      --bg-image: url('color.png'); /* <- 네가 올린 민트 이미지 파일명 */
       --ink:#222;
       --ink-dim:#555;
       --brand:#007acc;
@@ -17,30 +19,40 @@
       --rule:#eaeef2;
       --shadow:0 4px 12px rgba(0,0,0,.06);
       --radius:14px;
-      --radius-sm:10px;
       --radius-xs:8px;
       --maxw:960px;
-      --headerH:76px; /* JS에서 실제 높이로 갱신 */
+      --headerH:76px;
     }
     *{box-sizing:border-box}
     html,body{height:100%}
     body{
       margin:0;
       font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,'Apple SD Gothic Neo','Noto Sans KR',sans-serif;
-      background:var(--bg);
-      color:var(--ink)
+      color:var(--ink);
+      /* ✅ 사이트 전체 배경을 민트 이미지로 통일 */
+      background-image: var(--bg-image);
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      min-height:100%;
     }
     a{color:var(--brand);text-decoration:none}
+
+    /* Pages */
+    .page{min-height:100vh;display:none}
+    .page.active{display:block}
 
     /* Header */
     .site-header{
       position:sticky;top:0;z-index:50;
       background:linear-gradient(180deg,#ffffffee,#ffffffcc 60%,transparent);
       backdrop-filter:saturate(1.2) blur(6px);
-      border-bottom:1px solid var(--rule)
+      border-bottom:1px solid var(--rule);
     }
     .bar{
-      max-width:var(--maxw);margin:0 auto;padding:14px 16px;
+      max-width:var(--maxw);margin:0 auto;
+      padding:14px 16px;
       display:flex;gap:12px;align-items:center;justify-content:space-between
     }
     h1.title{margin:0;font-weight:800;letter-spacing:-.01em;font-size:clamp(20px,3.8vw,32px)}
@@ -49,30 +61,63 @@
     /* Container */
     .container{max-width:var(--maxw);margin:0 auto;padding:18px 16px 80px}
 
-    /* Search */
-    .search{position:relative}
-    .search input{width:100%;padding:12px 40px 12px 12px;border:1px solid var(--rule);border-radius:12px;background:#fff;outline:none}
-    .search .icon{position:absolute;right:10px;top:50%;transform:translateY(-50%);opacity:.55}
-
+    /* Notice */
     .notice{
-      background:var(--chip);border:1px solid var(--chip-border);
-      padding:14px 18px;border-radius:12px;color:var(--brand);
+      background:rgba(230,247,255,.95);
+      border:1px solid rgba(179,229,252,.95);
+      padding:14px 18px;border-radius:12px;
+      color:var(--brand);
       font-size:14px;line-height:1.6
     }
 
+    /* Search */
+    .search{position:relative;margin:12px 0 4px}
+    .search input{
+      width:100%;
+      padding:12px 40px 12px 12px;
+      border:1px solid var(--rule);
+      border-radius:12px;background:#fff;outline:none
+    }
+    .search .icon{position:absolute;right:10px;top:50%;transform:translateY(-50%);opacity:.55}
+
     /* Nav chips */
     .nav{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0}
-    .chip{border:1px solid var(--rule);background:#fff;padding:8px 12px;border-radius:999px;font-size:13px;cursor:pointer}
+    .chip{
+      border:1px solid var(--rule);
+      background:#fff;
+      padding:8px 12px;border-radius:999px;
+      font-size:13px;cursor:pointer
+    }
     .chip.active{background:#000;color:#fff;border-color:#000}
 
     /* Sections */
-    section.menu{margin:18px 0 28px;background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);padding:16px}
-    section.menu h2{margin:0 0 10px;padding-bottom:8px;border-bottom:2px solid var(--chip-border);color:var(--brand);font-size:20px}
-    .subtitle{margin:18px 0 10px;font-weight:700;color:var(--brand);border-bottom:1px dashed var(--rule);padding-bottom:6px}
+    section.menu{
+      margin:18px 0 28px;
+      background:rgba(255,255,255,.92);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+      padding:16px
+    }
+    section.menu h2{
+      margin:0 0 10px;
+      padding-bottom:8px;
+      border-bottom:2px solid var(--chip-border);
+      color:var(--brand);
+      font-size:20px
+    }
+    .subtitle{
+      margin:18px 0 10px;
+      font-weight:700;color:var(--brand);
+      border-bottom:1px dashed var(--rule);
+      padding-bottom:6px
+    }
 
     /* Items */
     ul.items{list-style:none;margin:0;padding:0}
-    li.item{display:flex;justify-content:space-between;gap:12px;padding:12px 0;border-bottom:1px dashed var(--rule)}
+    li.item{
+      display:flex;justify-content:space-between;gap:12px;
+      padding:12px 0;border-bottom:1px dashed var(--rule)
+    }
     li.item:last-child{border-bottom:0}
     .i-name{font-weight:600}
     .i-price{white-space:nowrap;color:var(--brand);font-weight:700}
@@ -80,62 +125,99 @@
 
     /* Cocktail grid */
     .grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-    .grid .item{display:flex;justify-content:space-between;align-items:center;border:1px solid var(--rule);background:#fafafa;border-radius:var(--radius-xs);padding:10px 12px;gap:10px}
+    .grid .item{
+      display:flex;justify-content:space-between;align-items:center;
+      border:1px solid var(--rule);
+      background:rgba(250,250,250,.92);
+      border-radius:var(--radius-xs);
+      padding:10px 12px;gap:10px
+    }
     .grid .i-name{font-weight:600;flex:1 1 auto;min-width:0;overflow-wrap:anywhere}
     .grid .i-price{color:var(--brand);font-weight:700;flex:0 0 auto;text-align:right;min-width:64px}
 
+    /* Buttons */
+    .btn{
+      display:inline-flex;align-items:center;justify-content:center;
+      gap:8px;
+      border:0;cursor:pointer;
+      padding:14px 16px;border-radius:999px;
+      background:#000;color:#fff;
+      font-weight:800;font-size:14px;
+      box-shadow:0 10px 20px rgba(0,0,0,.12);
+    }
+    .btn:active{transform:translateY(1px)}
+    .btn-ghost{
+      background:rgba(255,255,255,.92);
+      color:#000;border:1px solid rgba(0,0,0,.12)
+    }
+
     /* Back-to-top */
-    .to-top{position:fixed;right:16px;bottom:16px;background:#000;color:#fff;border:0;border-radius:999px;padding:12px 14px;font-size:13px;box-shadow:var(--shadow);cursor:pointer;z-index:70}
+    .to-top{
+      position:fixed;right:16px;bottom:16px;
+      background:#000;color:#fff;border:0;border-radius:999px;
+      padding:12px 14px;font-size:13px;
+      box-shadow:var(--shadow);cursor:pointer;display:none
+    }
 
-    /* ===== Pages ===== */
-    .page{display:none}
-    .page.active{display:block}
-
-    /* ===== Home (first screen) ===== */
-    #homePage{padding:0}
-    .home-wrap{max-width:560px;margin:18px auto 0;padding:0 6px}
+    /* ===== HOME (표지) ===== */
+    .home-wrap{
+      min-height:100vh;
+      display:flex;
+      align-items:stretch;
+      justify-content:center;
+      padding:0;
+    }
     .home-card{
-      background:#fff;border-radius:18px;box-shadow:var(--shadow);
-      overflow:hidden;border:1px solid var(--rule)
+      width:100%;
+      max-width:1100px;
+      margin:0 auto;
+      padding:16px;
+      display:flex;
+      flex-direction:column;
+      gap:14px;
     }
-    .home-img{display:block;width:100%;height:auto}
-    .home-actions{padding:14px 14px 16px;display:flex;gap:10px;justify-content:center}
-    .btn-primary{
-      appearance:none;border:0;background:#000;color:#fff;
-      padding:12px 16px;border-radius:999px;font-weight:700;
-      cursor:pointer;box-shadow:var(--shadow);font-size:14px
+    .home-hero{
+      position:relative;
+      width:100%;
+      border-radius:20px;
+      overflow:hidden;
+      box-shadow:0 14px 30px rgba(0,0,0,.10);
+      background:rgba(255,255,255,.35);
     }
-    .btn-primary:active{transform:translateY(1px)}
+    .home-img{
+      width:100%;
+      height:70vh;
+      object-fit:cover;
+      object-position:center;
+      display:block;
+    }
+    .home-cta{
+      display:flex;gap:10px;flex-wrap:wrap;
+      justify-content:center;
+    }
 
-    /* Mobile tweaks */
+    /* Mobile: 홈 이미지 '화면 가득' */
     @media (max-width:640px){
+      :root{ --headerH: 92px; }
       .bar{flex-direction:column;align-items:center;text-align:center;gap:6px}
       h1.title{font-size:clamp(24px,8.5vw,36px)}
       .ig{font-size:12px}
       .grid{grid-template-columns:1fr}
 
-      /* ✅ Mobile: Home full screen image */
-      #homePage{padding:0;margin:0}
-      .home-wrap{max-width:none;margin:0;padding:0}
-      .home-card{
-        border-radius:0;border:0;box-shadow:none;
+      .home-card{padding:0;gap:0}
+      .home-hero{border-radius:0;box-shadow:none}
+      .home-img{
         height:calc(100vh - var(--headerH));
       }
-      .home-img{
-        width:100%;
-        height:100%;
-        object-fit:cover;
-        object-position:center;
+      .home-cta{
+        padding:14px 16px 18px;
+        background:linear-gradient(180deg,transparent,rgba(255,255,255,.55));
+        backdrop-filter: blur(6px);
       }
-      .home-actions{
-        position:fixed;left:0;right:0;bottom:18px;
-        padding:0;justify-content:center;z-index:60;
-        pointer-events:none;
-      }
-      .home-actions .btn-primary{pointer-events:auto}
     }
   </style>
 </head>
+
 <body>
   <header class="site-header">
     <div class="bar">
@@ -144,25 +226,37 @@
     </div>
   </header>
 
-  <!-- ===== HOME PAGE ===== -->
-  <main id="homePage" class="page active">
+  <!-- =======================
+       HOME PAGE (표지)
+       - 홈 이미지 파일명만 맞춰줘: 36.5csummer.png
+       ======================= -->
+  <section id="homePage" class="page active" aria-label="표지">
     <div class="home-wrap">
       <div class="home-card">
-        <!-- ✅ 여기 이미지 파일명만 네 환경에 맞게 바꿔줘 -->
-        <img class="home-img" src="36.5csummer.png" alt="36.5도 여름 동쪽점 안내" />
-      </div>
-      <div class="home-actions">
-        <button id="goMenu" class="btn-primary" type="button">메뉴판 보러가기</button>
+        <div class="home-hero">
+          <!-- ✅ 표지 이미지 파일명 -->
+          <img class="home-img" src="36.5csummer.png" alt="36.5도 여름 안내 이미지" />
+        </div>
+
+        <div class="home-cta">
+          <button class="btn" id="goMenu">메뉴판 보러가기 →</button>
+          <button class="btn btn-ghost" id="goInsta">인스타그램 보기</button>
+        </div>
       </div>
     </div>
-  </main>
+  </section>
 
-  <!-- ===== MENU PAGE ===== -->
-  <main id="menuPage" class="page">
-    <div class="container">
-      <p class="notice">여름의 마스코트 냥이 이름은 <strong>파도</strong>입니다 🐾 사람을 좋아하지만 잘 물기도 해요. 서로의 안전을 위해 <strong>눈으로만</strong> 예뻐해주세요 😽</p>
+  <!-- =======================
+       MENU PAGE
+       ======================= -->
+  <section id="menuPage" class="page" aria-label="메뉴">
+    <main class="container">
+      <p class="notice">
+        여름의 마스코트 냥이 이름은 <strong>파도</strong>입니다 🐾 사람을 좋아하지만 잘 물기도 해요.
+        서로의 안전을 위해 <strong>눈으로만</strong> 예뻐해주세요 😽
+      </p>
 
-      <div class="search" style="margin:12px 0 4px">
+      <div class="search">
         <input id="q" type="search" placeholder="메뉴 검색 (예: 우동, 라임, 보드카)…" aria-label="메뉴 검색" />
         <span class="icon">🔎</span>
       </div>
@@ -176,6 +270,7 @@
         <button class="chip" data-scroll="#cocktail">Cocktail</button>
       </nav>
 
+      <!-- Summer Plate -->
       <section id="plate" class="menu" data-section>
         <h2>🍽️ Summer Plate</h2>
         <ul class="items">
@@ -195,58 +290,63 @@
         </ul>
       </section>
 
+      <!-- Beer -->
       <section id="beer" class="menu" data-section>
         <h2>🍺 Beer</h2>
         <ul class="items">
-          <li class="item" data-k="생맥주"> <span class="i-name">여름 생맥주</span> <span class="i-price">3,900</span></li>
-          <li class="item" data-k="패션후르츠 맥주"> <span class="i-name">패션후르츠 생맥주</span> <span class="i-price">4,900</span></li>
-          <li class="item" data-k="라임 맥주"> <span class="i-name">라임 생맥주</span> <span class="i-price">4,900</span></li>
-          <li class="item" data-k="꿀 맥주"> <span class="i-name">여름 꿀 생맥주</span> <span class="i-price">4,900</span></li>
-          <li class="item" data-k="라임 꿀 맥주"> <span class="i-name">라임 꿀 생맥주</span> <span class="i-price">4,900</span></li>
-          <li class="item" data-k="클라라"> <span class="i-name">클라라</span> <span class="i-price">4,900</span></li>
-          <li class="item" data-k="깔루아 맥주"> <span class="i-name">깔루아 생맥주</span> <span class="i-price">5,900</span></li>
-          <li class="item" data-k="빅맥"> <span class="i-name">빅맥</span> <span class="i-price">6,500</span></li>
-          <li class="item" data-k="라임 빅맥"> <span class="i-name">라임빅맥</span> <span class="i-price">7,900</span></li>
+          <li class="item" data-k="생맥주"><span class="i-name">여름 생맥주</span><span class="i-price">3,900</span></li>
+          <li class="item" data-k="패션후르츠 맥주"><span class="i-name">패션후르츠 생맥주</span><span class="i-price">4,900</span></li>
+          <li class="item" data-k="라임 맥주"><span class="i-name">라임 생맥주</span><span class="i-price">4,900</span></li>
+          <li class="item" data-k="꿀 맥주"><span class="i-name">여름 꿀 생맥주</span><span class="i-price">4,900</span></li>
+          <li class="item" data-k="라임 꿀 맥주"><span class="i-name">라임 꿀 생맥주</span><span class="i-price">4,900</span></li>
+          <li class="item" data-k="클라라"><span class="i-name">클라라</span><span class="i-price">4,900</span></li>
+          <li class="item" data-k="깔루아 맥주"><span class="i-name">깔루아 생맥주</span><span class="i-price">5,900</span></li>
+          <li class="item" data-k="빅맥"><span class="i-name">빅맥</span><span class="i-price">6,500</span></li>
+          <li class="item" data-k="라임 빅맥"><span class="i-name">라임빅맥</span><span class="i-price">7,900</span></li>
         </ul>
       </section>
 
+      <!-- Beverage -->
       <section id="beverage" class="menu" data-section>
         <h2>🥤 Beverage</h2>
         <ul class="items">
-          <li class="item" data-k="트리플 베리 에이드"> <span class="i-name">트리플베리에이드</span> <span class="i-price">5,900</span></li>
-          <li class="item" data-k="라임에이드"> <span class="i-name">라임에이드</span> <span class="i-price">5,900</span></li>
-          <li class="item" data-k="패션후르츠 에이드"> <span class="i-name">패션후르츠에이드</span> <span class="i-price">5,900</span></li>
-          <li class="item" data-k="알콜 추가"> <span class="i-name">알콜 추가</span> <span class="i-price">+1,500</span></li>
+          <li class="item" data-k="트리플 베리 에이드"><span class="i-name">트리플베리에이드</span><span class="i-price">5,900</span></li>
+          <li class="item" data-k="라임에이드"><span class="i-name">라임에이드</span><span class="i-price">5,900</span></li>
+          <li class="item" data-k="패션후르츠 에이드"><span class="i-name">패션후르츠에이드</span><span class="i-price">5,900</span></li>
+          <li class="item" data-k="알콜 추가"><span class="i-name">알콜 추가</span><span class="i-price">+1,500</span></li>
         </ul>
       </section>
 
+      <!-- Simsool -->
       <section id="simsool" class="menu" data-section>
         <h2>🍶 Simsool</h2>
         <ul class="items">
-          <li class="item" data-k="심술 7도 포도 블루베리 탄산"> <span><span class="i-name">심술 7도</span><span class="i-desc">과일의 달달함과 탄산의 시원함 (포도&블루베리)</span></span> <span class="i-price">7,000</span></li>
-          <li class="item" data-k="심술 12도 와인 포도 블루베리"> <span><span class="i-name">심술 12도</span><span class="i-desc">과일맛과 깔끔한 뒷맛으로 느껴지는 와인의 풍미 (포도&블루베리)</span></span> <span class="i-price">7,000</span></li>
+          <li class="item" data-k="심술 7도 포도 블루베리 탄산"><span><span class="i-name">심술 7도</span><span class="i-desc">과일의 달달함과 탄산의 시원함 (포도&블루베리)</span></span><span class="i-price">7,000</span></li>
+          <li class="item" data-k="심술 12도 와인 포도 블루베리"><span><span class="i-name">심술 12도</span><span class="i-desc">과일맛과 깔끔한 뒷맛으로 느껴지는 와인의 풍미 (포도&블루베리)</span></span><span class="i-price">7,000</span></li>
         </ul>
       </section>
 
+      <!-- Whiskey & Wine -->
       <section id="whisky" class="menu" data-section>
         <h2>🥃 Whiskey &amp; Wine</h2>
         <ul class="items">
-          <li class="item" data-k="잭다니엘 500"> <span class="i-name">Jack Daniel’s 500ml</span> <span class="i-price">95,000</span></li>
-          <li class="item" data-k="잭다니엘 700"> <span class="i-name">Jack Daniel’s 700ml</span> <span class="i-price">120,000</span></li>
-          <li class="item" data-k="호세 쿠에르보 데킬라"> <span class="i-name">Jose Cuervo Tequila</span> <span class="i-price">95,000</span></li>
-          <li class="item" data-k="봄베이 진 750"> <span class="i-name">Bombay Gin 750ml</span> <span class="i-price">100,000</span></li>
-          <li class="item" data-k="산토리 위스키"> <span class="i-name">산토리 위스키</span> < span class="i-price">100,000</span></li>
-          <li class="item" data-k="하이볼"> <span class="i-name">하이볼</span> <span class="i-price">7,900</span></li>
-          <li class="item" data-k="데킬라 보드카 샷"> <span class="i-name">데킬라/보드카 샷</span> <span class="i-price">3,900</span></li>
-          <li class="item" data-k="위스키 샷"> <span class="i-name">위스키 샷</span> <span class="i-price">4,900</span></li>
-          <li class="item" data-k="발디비에소 까쇼 레드 와인"> <span class="i-name">발디비에소 까쇼(레드와인)</span> <span class="i-price">45,000</span></li>
-          <li class="item" data-k="모스카토 다스티 화이트 와인"> <span class="i-name">모스카토 다스티(화이트와인)</span> <span class="i-price">45,000</span></li>
-          <li class="item" data-k="하우스 와인"> <span class="i-name">하우스 와인</span> <span class="i-price">5,900</span></li>
-          <li class="item" data-k="상그리아"> <span class="i-name">상그리아</span> <span class="i-price">6,900</span></li>
-          <li class="item" data-k="뱅쇼 겨울 한정"> <span class="i-name">여름 뱅쇼 (겨울 한정 메뉴)</span> <span class="i-price">7,000</span></li>
+          <li class="item" data-k="잭다니엘 500"><span class="i-name">Jack Daniel’s 500ml</span><span class="i-price">95,000</span></li>
+          <li class="item" data-k="잭다니엘 700"><span class="i-name">Jack Daniel’s 700ml</span><span class="i-price">120,000</span></li>
+          <li class="item" data-k="호세 쿠에르보 데킬라"><span class="i-name">Jose Cuervo Tequila</span><span class="i-price">95,000</span></li>
+          <li class="item" data-k="봄베이 진 750"><span class="i-name">Bombay Gin 750ml</span><span class="i-price">100,000</span></li>
+          <li class="item" data-k="산토리 위스키"><span class="i-name">산토리 위스키</span><span class="i-price">100,000</span></li>
+          <li class="item" data-k="하이볼"><span class="i-name">하이볼</span><span class="i-price">7,900</span></li>
+          <li class="item" data-k="데킬라 보드카 샷"><span class="i-name">데킬라/보드카 샷</span><span class="i-price">3,900</span></li>
+          <li class="item" data-k="위스키 샷"><span class="i-name">위스키 샷</span><span class="i-price">4,900</span></li>
+          <li class="item" data-k="발디비에소 까쇼 레드 와인"><span class="i-name">발디비에소 까쇼(레드와인)</span><span class="i-price">45,000</span></li>
+          <li class="item" data-k="모스카토 다스티 화이트 와인"><span class="i-name">모스카토 다스티(화이트와인)</span><span class="i-price">45,000</span></li>
+          <li class="item" data-k="하우스 와인"><span class="i-name">하우스 와인</span><span class="i-price">5,900</span></li>
+          <li class="item" data-k="상그리아"><span class="i-name">상그리아</span><span class="i-price">6,900</span></li>
+          <li class="item" data-k="뱅쇼 겨울 한정"><span class="i-name">여름 뱅쇼 (겨울 한정 메뉴)</span><span class="i-price">7,000</span></li>
         </ul>
       </section>
 
+      <!-- Cocktail -->
       <section id="cocktail" class="menu" data-section>
         <h2>🍸 Cocktail</h2>
 
@@ -273,7 +373,7 @@
           <div class="item" data-k="그랑블루"><span class="i-name">그랑블루</span><span class="i-price">7,900</span></div>
         </div>
 
-        <div class="subtitle">Tumbler & Mix</div>
+        <div class="subtitle">Tumbler &amp; Mix</div>
         <div class="grid" role="list" aria-label="텀블러 & 믹스 칵테일">
           <div class="item" data-k="데킬라 선라이즈"><span class="i-name">데킬라 선 라이즈</span><span class="i-price">8,400</span></div>
           <div class="item" data-k="미도리 사워"><span class="i-name">미도리 사워</span><span class="i-price">8,400</span></div>
@@ -298,37 +398,35 @@
           <div class="item" data-k="롱비치 아이스티"><span class="i-name">롱비치 아이스티</span><span class="i-price">9,400</span></div>
         </div>
       </section>
-    </div>
-  </main>
+    </main>
 
-  <button class="to-top" aria-label="맨 위로" title="맨 위로">▲ 맨 위로</button>
+    <button class="to-top" aria-label="맨 위로" title="맨 위로">▲ 맨 위로</button>
+  </section>
 
   <script>
-    // Set CSS header height variable accurately (for mobile full screen)
-    const headerEl = document.querySelector('.site-header');
-    const setHeaderH = () => {
-      const h = headerEl ? headerEl.offsetHeight : 76;
-      document.documentElement.style.setProperty('--headerH', h + 'px');
-    };
-    window.addEventListener('resize', setHeaderH);
-    setHeaderH();
-
-    // Page switch
+    // ====== Page switch (Home -> Menu) ======
     const homePage = document.getElementById('homePage');
     const menuPage = document.getElementById('menuPage');
-    const goMenuBtn = document.getElementById('goMenu');
+    const goMenu = document.getElementById('goMenu');
+    const goInsta = document.getElementById('goInsta');
 
-    goMenuBtn?.addEventListener('click', () => {
+    goMenu.addEventListener('click', () => {
       homePage.classList.remove('active');
       menuPage.classList.add('active');
-      window.scrollTo({ top: 0, behavior: 'instant' });
+      window.scrollTo({top:0, behavior:'instant'});
+      // 검색창 포커스(원하면)
+      const q = document.getElementById('q');
+      q && q.focus();
     });
 
-    // Smooth scroll for section chips (dynamic header height)
-    const chips = document.querySelectorAll('.chip');
-    chips.forEach(btn=>{
+    goInsta.addEventListener('click', () => {
+      window.open('https://www.instagram.com/365csummer', '_blank', 'noopener');
+    });
+
+    // ====== Smooth scroll for section chips ======
+    document.querySelectorAll('.chip').forEach(btn=>{
       btn.addEventListener('click',()=>{
-        chips.forEach(b=>b.classList.remove('active'));
+        document.querySelectorAll('.chip').forEach(b=>b.classList.remove('active'));
         btn.classList.add('active');
         const sel=btn.getAttribute('data-scroll');
         const target=document.querySelector(sel);
@@ -337,20 +435,24 @@
           const y=target.getBoundingClientRect().top + window.scrollY - (header?.offsetHeight || 76);
           window.scrollTo({top:y,behavior:'smooth'});
         }
-      })
+      });
     });
 
-    // Back to top
-    document.querySelector('.to-top').addEventListener('click',()=>{
-      window.scrollTo({top:0,behavior:'smooth'})
+    // ====== Back to top ======
+    const toTop = document.querySelector('.to-top');
+    toTop.addEventListener('click',()=> window.scrollTo({top:0,behavior:'smooth'}));
+    window.addEventListener('scroll',()=>{
+      // 메뉴 페이지에서만 보이기
+      if(!menuPage.classList.contains('active')) { toTop.style.display='none'; return; }
+      toTop.style.display = (window.scrollY > 600) ? 'block' : 'none';
     });
 
-    // Simple search filter (matches data-k, name text)
+    // ====== Simple search filter ======
     const q=document.getElementById('q');
     const sections=[...document.querySelectorAll('#menuPage [data-section]')];
     const index=sections.flatMap(sec=>[...sec.querySelectorAll('.item')]);
-
     const normalize=s=>s.normalize('NFKD').toLowerCase();
+
     let deb;
     q?.addEventListener('input',()=>{
       clearTimeout(deb);
